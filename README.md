@@ -1,6 +1,8 @@
 ## JavaScript: The Advanced Concepts
 
 - [Javascript Engine](#1)
+- [Writing Optimized Code](#2)
+- [Call Stack and Memory Heap](#3)
 
 ### 📒 Javascript Engine <a name="1"></a>
 
@@ -23,5 +25,64 @@ The `compiler` works ahead of time to convert instructions into a machine-code o
 In modern engines, the interpreter starts reading the code line by line while the profiler watches for frequently used code and flags then passes is to the compiler to be optimized.
 
 In the end, the JavaScript engine takes the bytecode the interpreter outputs and mixes in the optimized code the compiler outputs and then gives that to the computer. This is called `"Just in Time"` or `JIT` Compiler.
+
+### 📒 Writing Optimized Code <a name="2"></a>
+
+`Memoization` is a way to cache a return value of a function based on its parameters. This makes the function that takes a long time run much faster after one execution. If the parameter changes, it will still have to reevaluate the function.
+
+```javascript
+// Bad Way
+function addTo80(n) {
+  console.log('long time...')
+  return n + 80
+}
+
+addTo80(5)
+addTo80(5)
+addTo80(5)
+
+// long time... 85
+// long time... 85
+// long time... 85
+
+// Memoized Way
+functions memoizedAddTo80() {
+  let cache = {}
+  return function(n) { // closure to access cache obj
+    if (n in cache) {
+      return cache[n]
+    } else {
+      console.log('long time...')
+      cache[n] = n + 80
+      return cache[n]
+    }
+  }
+}
+const memoized = memoizedAddTo80()
+
+console.log('1.', memoized(5))
+console.log('2.', memoized(5))
+console.log('3.', memoized(5))
+console.log('4.', memoized(10))
+
+// long time...
+// 1. 85
+// 2. 85
+// 3. 85
+// long time...
+// 4. 90
+```
+
+More information:
+
+> CheatSheetv - https://zerotomastery.io/cheatsheets/javascript-cheatsheet-the-advanced-concepts/#writing-optimized-code
+
+> Javascript Hidden Classes and Inline Caching - https://richardartoul.github.io/jekyll/update/2015/04/26/hidden-classes.html
+
+> Managing arguments - https://github.com/petkaantonov/bluebird/wiki/Optimization-killers#3-managing-arguments
+
+> WebAssembly - https://webassembly.org/
+
+### 📒 Call Stack and Memory Heap <a name="3"></a>
 
 #### 🚩 R <a name="5"></a>

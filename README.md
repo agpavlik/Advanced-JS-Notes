@@ -85,4 +85,27 @@ More information:
 
 ### 📒 Call Stack and Memory Heap <a name="3"></a>
 
+The JavaScript engine does a lot of work for us, but 2 of the biggest jobs are reading and executing it. We need a place to store and write our data and a place to keep track line by line of what's executing.
+That's where the call stack and the memory heap come in.
+
+The `memory heap` is a place to store and write information so that we can use our memory appropriately. It is a place to allocate, use, and remove memory as needed. Think of it as a storage room of boxes that are unordered.
+
+The `call stack` keeps track of where we are in the code, so we can run the program in order.
+
+### 📒 Stack Overflow <a name="4"></a>
+
+So what happens if you keep calling functions that are nested inside each other? When this happens it's called a **stack overflow**.
+
+```javascript
+// When a function calls itself,
+// it is called RECURSION
+function inception() {
+  inception();
+}
+
+inception();
+// returns Uncaught RangeError:
+// Maximum call stack size exceeded
+```
+
 #### 🚩 R <a name="5"></a>

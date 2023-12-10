@@ -1,10 +1,20 @@
 ## JavaScript: The Advanced Concepts
 
-- [Javascript Engine](#1)
-- [Writing Optimized Code](#2)
-- [Call Stack and Memory Heap](#3)
+CheatSheet: https://zerotomastery.io/cheatsheets/javascript-cheatsheet-the-advanced-concepts/#writing-optimized-code
 
-### 📒 Javascript Engine <a name="1"></a>
+- [JS Foundation](#1)
+  - [JS Engine](#2)
+  - [Writing Optimized Code (Memoization, Hidden Classes, Inline Caching, Managing arguments, WebAssembly)](#3)
+  - [Call Stack and Memory Heap](#4)
+  - [Stack Overflow](#5)
+  - [Garbage Collection](#6)
+  - [JS Runtime](#7)
+
+---
+
+### JS FOUNDATION <a name="1"></a>
+
+### 📒 Javascript Engine <a name="2"></a>
 
 A `JavaScript engine` is a computer program that you give JavaScript code to and it tells the computer how to execute it. Basically a translator for the computer between JavaScript and a language that the computer understands.
 
@@ -26,7 +36,7 @@ In modern engines, the interpreter starts reading the code line by line while th
 
 In the end, the JavaScript engine takes the bytecode the interpreter outputs and mixes in the optimized code the compiler outputs and then gives that to the computer. This is called `"Just in Time"` or `JIT` Compiler.
 
-### 📒 Writing Optimized Code <a name="2"></a>
+### 📒 Writing Optimized Code <a name="3"></a>
 
 `Memoization` is a way to cache a return value of a function based on its parameters. This makes the function that takes a long time run much faster after one execution. If the parameter changes, it will still have to reevaluate the function.
 
@@ -75,15 +85,13 @@ console.log('4.', memoized(10))
 
 More information:
 
-> CheatSheetv - https://zerotomastery.io/cheatsheets/javascript-cheatsheet-the-advanced-concepts/#writing-optimized-code
-
 > Javascript Hidden Classes and Inline Caching - https://richardartoul.github.io/jekyll/update/2015/04/26/hidden-classes.html
 
 > Managing arguments - https://github.com/petkaantonov/bluebird/wiki/Optimization-killers#3-managing-arguments
 
 > WebAssembly - https://webassembly.org/
 
-### 📒 Call Stack and Memory Heap <a name="3"></a>
+### 📒 Call Stack and Memory Heap <a name="4"></a>
 
 The JavaScript engine does a lot of work for us, but 2 of the biggest jobs are reading and executing it. We need a place to store and write our data and a place to keep track line by line of what's executing.
 That's where the call stack and the memory heap come in.
@@ -92,7 +100,7 @@ The `memory heap` is a place to store and write information so that we can use o
 
 The `call stack` keeps track of where we are in the code, so we can run the program in order.
 
-### 📒 Stack Overflow <a name="4"></a>
+### 📒 Stack Overflow <a name="5"></a>
 
 So what happens if you keep calling functions that are nested inside each other? When this happens it's called a **stack overflow**.
 
@@ -107,5 +115,24 @@ inception();
 // returns Uncaught RangeError:
 // Maximum call stack size exceeded
 ```
+
+### 📒 Garbage Collection <a name="6"></a>
+
+JavaScript is a garbage collected language. If you allocate memory inside of a function, JavaScript will automatically remove it from the memory heap when the function is done being called.
+However, that does not mean you can forget about `memory leaks`. No system is perfect, so it is important to always remember memory management. JavaScript completes garbage collection with a `mark` and `sweep` method.
+
+> https://developers.soundcloud.com/blog/garbage-collection-in-redux-applications
+
+### 📒 JavaScript Runtime <a name="7"></a>
+
+When you visit a web page, you run a browser to do so (Chrome, Firefox, Safari, Edge). Each browser has its own version of `JavaScript Runtime` with a set of `Web API's`, methods that developers can access from the window object.
+
+In a synchronous language, only one thing can be done at a time. Imagine an alert on the page, blocking the user from accessing any part of the page until the OK button is clicked. If everything in JavaScript that took a significant amount of time, blocked the browser, then we would have a pretty bad user experience.
+
+This is where `concurrency` and the `event loop` come in. When you run some JavaScript code in a browser, the engine starts to parse the code. Each line is executed and popped on and off the call stack.
+
+Web API's are not something JavaScript recognizes, so the parser knows to pass it off to the browser for it to handle. When the browser has finished running its method, it puts what is needed to be ran by JavaScript into the callback queue. The callback queue cannot be ran until the call stack is completely empty. So, the event loop is constantly checking the call stack to see if it is empty so that it can add anything in the callback queue back into the call stack. And finally, once it is back in the call stack, it is ran and then popped off the stack.
+
+Until 2009, JavaScript was only run inside of the browser. That is when Ryan Dahl decided it would be great if we could use JavaScript to build things outside the browser. He used C and C++ to build an executable (exe) program called `Node JS`. Node JS is a JavaScript runtime environment built on Chrome's V8 engine that uses C++ to provide the event loop and callback queue needed to run asynchronous operations.
 
 #### 🚩 R <a name="5"></a>

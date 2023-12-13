@@ -9,7 +9,8 @@ CheatSheet: https://zerotomastery.io/cheatsheets/javascript-cheatsheet-the-advan
   - [Stack Overflow](#5)
   - [Garbage Collection](#6)
   - [JS Runtime](#7)
-  - [Execution Context, Lexical Environment, Scope Chain](#8)
+  - [Execution Context, Lexical Environment, Scope Chain, Hoisting](#8)
+  - [The arguments object](#9)
 
 ---
 
@@ -136,12 +137,46 @@ Web API's are not something JavaScript recognizes, so the parser knows to pass i
 
 Until 2009, JavaScript was only run inside of the browser. That is when Ryan Dahl decided it would be great if we could use JavaScript to build things outside the browser. He used C and C++ to build an executable (exe) program called `Node JS`. Node JS is a JavaScript runtime environment built on Chrome's V8 engine that uses C++ to provide the event loop and callback queue needed to run asynchronous operations.
 
-### 📒 Execution Context <a name="8"></a>
+### 📒 Execution Context, Lexical Environment, Scope Chain, Hoisting <a name="8"></a>
 
 Code in JavaScript is always run inside a type of execution context. `Execution context` is simply the environment within which your code is ran. There are 2 types of execution context in JavaScript, `global` or `function`. There are 2 stages as well to each context, the creation and executing phase. As the JavaScript engine starts to read your code, it creates something called the Global Execution Context.
 
 A `lexical environment` is basically the scope or environment the engine is currently reading code in. A new lexical environment is created when curly brackets {} are used, even nested brackets {{...}} create a new lexical environment. The execution context tells the engine which lexical environment it is currently working in and the lexical scope determines the available variables.
 
 Each environment context that is created has a link outside of its lexical environment called the `scope chain`. The scope chain gives us access to variables in the parent environment.
+
+`Hoisting` is the process of putting all variable and function declarations into memory during the compile phase. In JavaScript, functions are fully hoisted, var variables are hoisted and initialized to undefined, and let and const variables are hoisted but not initialized a value. Var variables are given a memory allocation and initialized a value of undefined until they are set to a value in line. So if a var variable is used in the code before it is initialized, then it will return undefined. However, a function can be called from anywhere in the code base because it is fully hoisted. If let and const are used before they are declared, then they will throw a reference error because they have not yet been initialized.
+
+### 📒 The arguments object <a name="9"></a>
+
+Arguments looks like an array, but it's not really an array. There are many things that you can do with the arguments keyword that might make the compiler or the JavaScript engine less able to optimize your code because you can't really use array methods on this. And with the new JavaScript, they introduced a few little tools that we can use so that we avoid using arguments, because there are some cases where we might want to iterate or loop through arguments instead of just accessing them regularly.
+
+```javascript
+function marry (person1, person2){
+  console.log(arguments)
+  console.log(Array.from(arguments))
+  return `${person1}` is now merried with `${person2}`
+}
+
+marry ('Tim', 'Tina')
+
+// {0: 'Tim, 1: 'Tina'}
+// ['Tim', 'Tina']
+```
+
+```javascript
+function marry (...args){
+  console.log(args)
+  console.log(Array.from(arguments))
+  return `${args[0]}` is now merried with `${args[1]}`
+}
+
+marry ('Tim', 'Tina')
+
+// ['Tim', 'Tina']
+// ['Tim', 'Tina']
+```
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments
 
 #### 🚩 R <a name="5"></a>

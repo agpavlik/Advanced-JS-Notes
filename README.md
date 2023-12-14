@@ -11,6 +11,7 @@ CheatSheet: https://zerotomastery.io/cheatsheets/javascript-cheatsheet-the-advan
   - [JS Runtime](#7)
   - [Execution Context, Lexical Environment, Scope Chain, Hoisting](#8)
   - [The arguments object](#9)
+  - [Function Scope and Block Scope](#10)
 
 ---
 
@@ -145,6 +146,23 @@ A `lexical environment` is basically the scope or environment the engine is curr
 
 Each environment context that is created has a link outside of its lexical environment called the `scope chain`. The scope chain gives us access to variables in the parent environment.
 
+```javascript
+function sayMyName() {
+  var a = "a";
+  return function findName() {
+    var b = "b";
+    return function printName() {
+      var c = "c";
+      return "String";
+    };
+  };
+}
+
+sayMyName()()(); //each function is returned and has to be called
+
+// The functions only get access to the variables in their parent container, not a child. The scope chain only links down the call stack
+```
+
 `Hoisting` is the process of putting all variable and function declarations into memory during the compile phase. In JavaScript, functions are fully hoisted, var variables are hoisted and initialized to undefined, and let and const variables are hoisted but not initialized a value. Var variables are given a memory allocation and initialized a value of undefined until they are set to a value in line. So if a var variable is used in the code before it is initialized, then it will return undefined. However, a function can be called from anywhere in the code base because it is fully hoisted. If let and const are used before they are declared, then they will throw a reference error because they have not yet been initialized.
 
 ### 📒 The arguments object <a name="9"></a>
@@ -178,5 +196,42 @@ marry ('Tim', 'Tina')
 ```
 
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments
+
+### 📒 Function Scope and Block Scope <a name="10"></a>
+
+Most programming languages are block scoped, meaning every time you see a new { } (curly braces) is a new lexical environment.
+
+However, JavaScript is function scoped, meaning it only creates a new local environment if it sees the keyword function on the global scope.
+
+To give us access to block scope, in ES6 `let` and `const` were added to the language. Using these can prevent memory leaks, but there is still an argument to be made for using `var`.
+
+```javascript
+//Function Scope
+function loop() {
+  for (var i = 0; i < 5; i++) {
+    console.log(i);
+  }
+  console.log("final", i); // returns final 5
+}
+
+//Block Scope
+function loop2() {
+  for (let i = 0; i < 5; i++) {
+    // can access i here
+  }
+  console.log("final", i); // returns an error
+}
+
+loop();
+/*
+  1
+  2
+  3
+  4
+  final 5
+*/
+loop2();
+// ReferenceError: i is not defined
+```
 
 #### 🚩 R <a name="5"></a>

@@ -296,6 +296,46 @@ obj1.importantPerson(); // Cassy!
 obj2.importantPerson(); // Jacob!
 ```
 
+A big gotcha for a lot of people working with \*this is when a function is ran inside of another function. It gets a little confusing, but we can remember who called the function.
+
+```javascript
+const obj = {
+  name: "Billy",
+  sing() {
+    console.log("a", this);
+    var anotherFunc = function () {
+      console.log("b", this);
+    };
+    anotherFunc();
+  },
+};
+obj.sing();
+
+// a {name: "Billy", sing: ƒ}
+// b Window {…}
+```
+
+In the example above, the obj called sing() and then anotherFunc() was called within the sing() function. In JavaScript, that function defaults to the Window object. It happens because everything in JavaScript is lexically scoped except for the this keyword. It doesn't matter where it is written, it matters how it is called. Changing anotherFunc() instead to an arrow function will fix this problem. Arrow functions do not bind or set their own context for this.
+
+If this is used in an arrow function, it is taken from the outside. Arrow functions also have no arguments created as functions do.
+
+```javascript
+const obj = {
+  name: "Billy",
+  sing() {
+    console.log("a", this);
+    var anotherFunc = () => {
+      console.log("b", this);
+    };
+    anotherFunc();
+  },
+};
+obj.sing();
+
+// a {name: "Billy", sing: ƒ}
+// b {name: "Billy", sing: ƒ}
+```
+
 Here is `this` 4 ways:
 
 - new keyword binding - the new keyword changes the meaning of "this" to be the object that is being created.
@@ -359,6 +399,47 @@ person4.hi();
 ```
 
 ### 📒 call(), apply(), bind() <a name="13"></a>
+
+`Call` is a method of an object that can substitute a different object than the one it is written on.
+
+```javascript
+function a() {
+  console.log("hi");
+}
+
+a.call(); // hi
+```
+
+`Apply` is almost identical to call, except that instead of a comma separated list of arguments, it takes an array of arguments.
+
+Unlike call and apply, `bind` does not run the method it is used on, but rather returns a new function that can then be called later.
+
+```javascript
+const wizard = {
+  name: "Merlin",
+  health: 100,
+  heal(num1, num2) {
+    return (this.health += num1 + num2);
+  },
+};
+
+const archer = {
+  name: "Robin Hood",
+  health: 30,
+};
+console.log(archer); // health: 30
+wizard.heal.call(archer, 50, 30);
+console.log(archer); // health: 110
+
+console.log(archer); // health: 30
+wizard.heal.apply(archer, [50, 30]);
+console.log(archer); // health: 110
+
+console.log(archer); // health: 30
+const healArcher = wizard.heal.bind(archer, 50, 20);
+healArcher();
+console.log(archer); // health: 100
+```
 
 ### 📒 <a name="14"></a>
 

@@ -16,7 +16,7 @@ CheatSheet: https://zerotomastery.io/cheatsheets/javascript-cheatsheet-the-advan
   - [Function Scope and Block Scope](#10)
   - [IIFE](#11)
   - [`this` keyword](#12)
-  - [call(), apply(), bind()](#13)
+  - [call(), apply(), bind(), Currying with bind](#13)
 
 ---
 
@@ -398,7 +398,7 @@ person4.hi();
 // if either function is changed around, it doesn't work
 ```
 
-### 📒 call(), apply(), bind() <a name="13"></a>
+### 📒 call(), apply(), bind(), Currying with bind <a name="13"></a>
 
 `Call` is a method of an object that can substitute a different object than the one it is written on.
 
@@ -439,6 +439,20 @@ console.log(archer); // health: 30
 const healArcher = wizard.heal.bind(archer, 50, 20);
 healArcher();
 console.log(archer); // health: 100
+```
+
+`Currying` is breaking down a function with multiple arguments into one or more functions that each accept a single argument.
+
+```javascript
+function multiply(a, b) {
+  return a * b;
+}
+
+let multiplyByTwo = multiply.bind(this, 2);
+multiplyByTwo(4); // 8
+
+let multiplyByTen = multiply.bind(this, 10);
+multiplyByTen(6); // 60
 ```
 
 ### 📒 <a name="14"></a>

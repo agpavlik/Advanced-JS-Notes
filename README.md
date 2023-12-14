@@ -260,7 +260,6 @@ Variable declarations with let and const work differently from the var variable 
 // Example where 'this' becomes useful and the reason that this keyword was created.
 //Two main benefits of why the this keyword was created:
 // 1. gives methods access to their object.
-// 2. execute the same code for multiple objects
 
 const obj = {
   name: "Veronica",
@@ -277,6 +276,28 @@ const obj = {
 obj.sing(); // lalala Veronica
 obj.singAgain(); // lalala Veronica!
 obj.singTwo(); // lalala Veronica!
+
+// 2. execute the same code for multiple objects
+
+function importantPerson() {
+  console.log(this.name + "!");
+}
+
+const name = "Sunny";
+
+const obj1 = {
+  name: "Cassy",
+  importantPerson: importantPerson,
+};
+
+const obj1 = {
+  name: "Jacob",
+  importantPerson: importantPerson,
+};
+
+importantPerson(); // Sunny!
+obj1.importantPerson(); // Cassy!
+obj2.importantPerson(); // Jacob!
 ```
 
 Here is `this` 4 ways:

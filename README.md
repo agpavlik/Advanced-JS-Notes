@@ -12,6 +12,7 @@ CheatSheet: https://zerotomastery.io/cheatsheets/javascript-cheatsheet-the-advan
   - [Execution Context, Lexical Environment, Scope Chain, Hoisting](#8)
   - [The arguments object](#9)
   - [Function Scope and Block Scope](#10)
+  - [IIFE](#11)
 
 ---
 
@@ -233,5 +234,25 @@ loop();
 loop2();
 // ReferenceError: i is not defined
 ```
+
+Variable declarations with let and const work differently from the var variable declaration. When a lexical scope is entered and the execution context is created, the engine allocates memory for any `var` variable in that scope and initializes it to undefined. The `let` and `const` variables only get initialized on the line they are executed on and only get allocated undefined if there is no assignment to the variable. Trying to access a `let` or `const` variable before it is declared or outside of its block without returning it will result in a Reference Error.
+
+### 📒 IIFE <a name="11"></a>
+
+`Immediately Invoked Function Expression` is a JavaScript function that runs as soon as it is defined. Can also be referred to as a Self-Executing Anonymous Function.
+
+```javascript
+// Grouping Operator () creates a lexical scope
+(function () {
+  // statements
+})();
+// Immediately invokes the function with 2nd set of ()
+```
+
+### 📒 <a name="12"></a>
+
+### 📒 <a name="13"></a>
+
+### 📒 <a name="14"></a>
 
 #### 🚩 R <a name="5"></a>

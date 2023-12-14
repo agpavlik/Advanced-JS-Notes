@@ -16,6 +16,7 @@ CheatSheet: https://zerotomastery.io/cheatsheets/javascript-cheatsheet-the-advan
   - [Function Scope and Block Scope](#10)
   - [IIFE](#11)
   - [`this` keyword](#12)
+  - [call(), apply(), bind()](#13)
 
 ---
 
@@ -260,7 +261,6 @@ Variable declarations with let and const work differently from the var variable 
 // Example where 'this' becomes useful and the reason that this keyword was created.
 //Two main benefits of why the this keyword was created:
 // 1. gives methods access to their object.
-
 const obj = {
   name: "Veronica",
   sing: function () {
@@ -278,18 +278,14 @@ obj.singAgain(); // lalala Veronica!
 obj.singTwo(); // lalala Veronica!
 
 // 2. execute the same code for multiple objects
-
 function importantPerson() {
   console.log(this.name + "!");
 }
-
 const name = "Sunny";
-
 const obj1 = {
   name: "Cassy",
   importantPerson: importantPerson,
 };
-
 const obj1 = {
   name: "Jacob",
   importantPerson: importantPerson,
@@ -362,7 +358,7 @@ person4.hi();
 // if either function is changed around, it doesn't work
 ```
 
-### 📒 <a name="13"></a>
+### 📒 call(), apply(), bind() <a name="13"></a>
 
 ### 📒 <a name="14"></a>
 

@@ -2,6 +2,8 @@
 
 CheatSheet: https://zerotomastery.io/cheatsheets/javascript-cheatsheet-the-advanced-concepts/#writing-optimized-code
 
+---
+
 - [JS Foundation](#1)
   - [JS Engine](#2)
   - [Writing Optimized Code (Memoization, Hidden Classes, Inline Caching, Managing arguments, WebAssembly)](#3)
@@ -13,6 +15,7 @@ CheatSheet: https://zerotomastery.io/cheatsheets/javascript-cheatsheet-the-advan
   - [The arguments object](#9)
   - [Function Scope and Block Scope](#10)
   - [IIFE](#11)
+  - [`this` keyword](#12)
 
 ---
 
@@ -249,10 +252,101 @@ Variable declarations with let and const work differently from the var variable 
 // Immediately invokes the function with 2nd set of ()
 ```
 
-### 📒 <a name="12"></a>
+### 📒 `this` keyword<a name="12"></a>
+
+`this` is the object that the function is a property of (example: obj.someFunc(this))
+
+```javascript
+// Example where 'this' becomes useful and the reason that this keyword was created.
+//Two main benefits of why the this keyword was created:
+// 1. gives methods access to their object.
+// 2. execute the same code for multiple objects
+
+const obj = {
+  name: "Veronica",
+  sing: function () {
+    return "lalala " + this.name;
+  },
+  singAgain() {
+    return "lalala " + this.name + "!";
+  },
+  singTwo() {
+    return this.sing() + "!";
+  },
+};
+obj.sing(); // lalala Veronica
+obj.singAgain(); // lalala Veronica!
+obj.singTwo(); // lalala Veronica!
+```
+
+Here is `this` 4 ways:
+
+- new keyword binding - the new keyword changes the meaning of "this" to be the object that is being created.
+- implicit binding - "this" refers to the object that is calling it. It is implied, without doing anything its just how the language works.
+- explicit binding - using the "bind" keyword to change the meaning of "this".
+- arrow functions as methods - "this" is lexically scoped, refers to it's current surroundings and no further. However, if "this" is inside of a method's function, it falls out of scope and belongs to the window object. To correct this, you can use a higher order function to return an arrow function that calls "this".
+
+```javascript
+// new binding
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  console.log(this);
+}
+
+const person1 = new Person("person1", 55);
+// this = Person { name: 'person1', age: 55 }
+
+//implicit binding
+const person = {
+  name: "person",
+  age: 20,
+  hi() {
+    console.log("hi " + this);
+  },
+};
+
+person.hi();
+// this = person { name: 'person', age: 20, hi(){...} }
+
+//explicit binding
+let name = "Brittney";
+
+const person3 = {
+  name: "person3",
+  age: 50,
+  hi: function () {
+    console.log("hi " + this.name);
+  }.bind(window),
+};
+
+person3.hi();
+// hi Brittney
+// this = window {...}
+
+// arrow functions inside objects
+const person4 = {
+  name: "person4",
+  age: 40,
+  hi: function () {
+    var inner = () => {
+      console.log(this);
+    };
+    return inner();
+  },
+};
+
+person4.hi();
+// this = person4 { name: 'person4', age: 40, hi() {...} }
+// if either function is changed around, it doesn't work
+```
 
 ### 📒 <a name="13"></a>
 
 ### 📒 <a name="14"></a>
 
 #### 🚩 R <a name="5"></a>
+
+```
+
+```

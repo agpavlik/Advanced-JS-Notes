@@ -1,6 +1,6 @@
 ## JavaScript: The Advanced Concepts
 
-CheatSheet: https://zerotomastery.io/cheatsheets/javascript-cheatsheet-the-advanced-concepts/#writing-optimized-code
+<a href='https://zerotomastery.io/cheatsheets/javascript-cheatsheet-the-advanced-concepts/#writing-optimized-code'> CheatSheet </a>
 
 ---
 
@@ -17,6 +17,7 @@ CheatSheet: https://zerotomastery.io/cheatsheets/javascript-cheatsheet-the-advan
   - [IIFE](#11)
   - [`this` keyword](#12)
   - [call(), apply(), bind(), Currying with bind](#13)
+- [JS Types](#14)
 
 ---
 
@@ -38,7 +39,7 @@ An `interpreter` directly executes each line of code line by line, without requi
 
 The `compiler` works ahead of time to convert instructions into a machine-code or lower-level form so that they can be read and executed by a computer. It runs all of the code and tries to figure out what the code does and then compiles it down into another language that is easier for the computer to read.
 
-`Babel` (https://babeljs.io/) is a Javascript compiler that takes your modern JS code and returns browser compatible JS (older JS code). `Typescript` (https://www.typescriptlang.org/) is a superset of Javascript that compiles down to Javascript. Both of these do exactly what compilers do. Take one language and convert into a different one!
+<a href='https://babeljs.io/'>Babel</a> is a Javascript compiler that takes your modern JS code and returns browser compatible JS (older JS code). <a href='https://www.typescriptlang.org/'>Typescript</a> is a superset of Javascript that compiles down to Javascript. Both of these do exactly what compilers do. Take one language and convert into a different one!
 
 In modern engines, the interpreter starts reading the code line by line while the profiler watches for frequently used code and flags then passes is to the compiler to be optimized.
 
@@ -93,11 +94,11 @@ console.log('4.', memoized(10))
 
 More information:
 
-> Javascript Hidden Classes and Inline Caching - https://richardartoul.github.io/jekyll/update/2015/04/26/hidden-classes.html
+> <a href ="https://richardartoul.github.io/jekyll/update/2015/04/26/hidden-classes.html">Javascript Hidden Classes and Inline Caching</a>
 
-> Managing arguments - https://github.com/petkaantonov/bluebird/wiki/Optimization-killers#3-managing-arguments
+> <a href='https://github.com/petkaantonov/bluebird/wiki/Optimization-killers#3-managing-arguments'>Managing arguments</a>
 
-> WebAssembly - https://webassembly.org/
+> <a href="https://webassembly.org/">WebAssembly</a>
 
 ### 📒 Call Stack and Memory Heap <a name="4"></a>
 
@@ -129,7 +130,7 @@ inception();
 JavaScript is a garbage collected language. If you allocate memory inside of a function, JavaScript will automatically remove it from the memory heap when the function is done being called.
 However, that does not mean you can forget about `memory leaks`. No system is perfect, so it is important to always remember memory management. JavaScript completes garbage collection with a `mark` and `sweep` method.
 
-> https://developers.soundcloud.com/blog/garbage-collection-in-redux-applications
+<a href="https://developers.soundcloud.com/blog/garbage-collection-in-redux-applications"> More info ... </a>
 
 ### 📒 JavaScript Runtime <a name="7"></a>
 
@@ -200,7 +201,7 @@ marry ('Tim', 'Tina')
 // ['Tim', 'Tina']
 ```
 
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments
+<a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments'>More info ... </a>
 
 ### 📒 Function Scope and Block Scope <a name="10"></a>
 
@@ -455,7 +456,19 @@ let multiplyByTen = multiply.bind(this, 10);
 multiplyByTen(6); // 60
 ```
 
-### 📒 <a name="14"></a>
+### 📒 JS Types <a name="14"></a>
+
+<a href=>
+
+### 📒 <a name="15"></a>
+
+### 📒 <a name="16"></a>
+
+### 📒 <a name="17"></a>
+
+### 📒 <a name="18"></a>
+
+### 📒 <a name="19"></a>
 
 #### 🚩 R <a name="5"></a>
 

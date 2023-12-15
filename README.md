@@ -458,7 +458,9 @@ multiplyByTen(6); // 60
 
 ### 📒 JS Types <a name="14"></a>
 
-<a href='https://developer.mozilla.org/en-US/docs/Glossary/Number'>Number</a>
+`Primitive type` - is a data that only represents a single value.
+
+- <a href='https://developer.mozilla.org/en-US/docs/Glossary/Number'>Number</a>
 
 ```javascript
 typeof 37 === "number";
@@ -471,13 +473,13 @@ typeof Number("1") === "number"; // Number tries to parse things into numbers
 typeof Number("shoe") === "number"; // including values that cannot be type coerced to a number
 ```
 
-<a href='https://developer.mozilla.org/en-US/docs/Glossary/BigInt'>BigInt</a>
+- <a href='https://developer.mozilla.org/en-US/docs/Glossary/BigInt'>BigInt</a>
 
 ```javascript
 typeof 42n === "bigint";
 ```
 
-<a href='https://developer.mozilla.org/en-US/docs/Glossary/String'>String</a>
+- <a href='https://developer.mozilla.org/en-US/docs/Glossary/String'>String</a>
 
 ```javascript
 typeof "" === "string";
@@ -488,7 +490,7 @@ typeof typeof 1 === "string"; // typeof always returns a string
 typeof String(1) === "string"; // String converts anything into a string, safer than toString
 ```
 
-<a href='https://developer.mozilla.org/en-US/docs/Glossary/Boolean'>Boolean</a>
+- <a href='https://developer.mozilla.org/en-US/docs/Glossary/Boolean'>Boolean</a>
 
 ```javascript
 typeof true === "boolean";
@@ -497,7 +499,7 @@ typeof Boolean(1) === "boolean"; // Boolean() will convert values based on if th
 typeof !!1 === "boolean"; // two calls of the ! (logical NOT) operator are equivalent to Boolean()
 ```
 
-<a href='https://developer.mozilla.org/en-US/docs/Glossary/Symbol'>Symbol</a>
+- <a href='https://developer.mozilla.org/en-US/docs/Glossary/Symbol'>Symbol</a>
 
 ```javascript
 typeof Symbol() === "symbol";
@@ -505,9 +507,9 @@ typeof Symbol("foo") === "symbol";
 typeof Symbol.iterator === "symbol";
 ```
 
-<a href='https://developer.mozilla.org/en-US/docs/Glossary/Null'>Null</a> - absence of value
+- <a href='https://developer.mozilla.org/en-US/docs/Glossary/Null'>Null</a> - absence of value
 
-<a href='https://developer.mozilla.org/en-US/docs/Glossary/Undefined'>Undefined</a> - absence of definition
+- <a href='https://developer.mozilla.org/en-US/docs/Glossary/Undefined'>Undefined</a> - absence of definition
 
 ```javascript
 typeof undefined === "undefined";
@@ -515,7 +517,9 @@ typeof declaredButUndefinedVariable === "undefined";
 typeof undeclaredVariable === "undefined";
 ```
 
-<a href='https://developer.mozilla.org/en-US/docs/Glossary/Function'>Function</a>
+`Non-primitive type`
+
+- <a href='https://developer.mozilla.org/en-US/docs/Glossary/Function'>Function</a>
 
 ```javascript
 typeof function () {} === "function";
@@ -523,7 +527,7 @@ typeof class C {} === "function";
 typeof Math.sin === "function";
 ```
 
-Object
+- Object
 
 ```javascript
 typeof { a: 1 } === "object";
@@ -540,6 +544,8 @@ typeof new Boolean(true) === "object";
 typeof new Number(1) === "object";
 typeof new String("abc") === "object";
 ```
+
+<a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects'> More info ... </a>
 
 ### 📒 <a name="15"></a>
 

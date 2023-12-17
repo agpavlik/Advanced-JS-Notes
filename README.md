@@ -18,6 +18,7 @@
   - [`this` keyword](#12)
   - [call(), apply(), bind(), Currying with bind](#13)
 - [JS Types](#14)
+  - [Type coercion](#15)
 
 ---
 
@@ -458,7 +459,7 @@ multiplyByTen(6); // 60
 
 ### 📒 JS Types <a name="14"></a>
 
-`Primitive type` - is a data that only represents a single value.
+`Primitive type` - is a data that only represents a single value. Primitive types are immutable. The variable assigned to a primitive type may be reassigned to a new value, but the original value can not be changed in the same way objects can be modified. Primitives are passed by value, meaning their values are copied and then placed somewhere else in the memory.
 
 - <a href='https://developer.mozilla.org/en-US/docs/Glossary/Number'>Number</a>
 
@@ -534,6 +535,19 @@ typeof Math.sin === "function";
 
 - Object
 
+  Objects are one of the broadest types in JavaScript, almost "everything" is an object.
+  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects">Standard built-in objects</a>
+
+  - Booleans can be objects (if defined with the new keyword)
+  - Numbers can be objects (if defined with the new keyword)
+  - Strings can be objects (if defined with the new keyword)
+  - Dates are always objects
+  - Maths are always objects
+  - Regular expressions are always objects
+  - Arrays are always objects
+  - Functions are always objects
+  - Objects are always objects
+
 ```javascript
 typeof { a: 1 } === "object";
 
@@ -552,7 +566,71 @@ typeof new String("abc") === "object";
 
 <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects'> More info ... </a>
 
-### 📒 <a name="15"></a>
+Objects are able to be mutated and their properties are passed by reference, meaning their properties are not stored separately in memory. A new variable pointing to an object will not create a copy, but reference the original objects location in memory. Therefore, changing the 2nd object will also change the first.
+
+```javascript
+// objects are passed by reference
+let obj = {
+  name: "object 1",
+};
+let newObj = obj; // points to same place in memory as obj
+newObj.name = "newObj"; // modifies the memory
+// Since both point to the same place...
+console.log(obj); // {name: newObj}
+console.log(newObj); // {name: newObj}
+// They are both modified.
+
+let arr = [1, 2, 3];
+let newArr = arr;
+newArr.push(4);
+console.log(arr); // [1, 2, 3, 4]
+console.log(newArr); // [1, 2, 3, 4]
+```
+
+There are two ways to get around this, `Object.assign()` or use the `spread operator {...}` to "spread" or expand the object into a new variable. By doing this, it will allow the new variable to be modified without changing the original. However, these only create a "shallow copy".
+
+`Shallow copy` is a bit-wise copy of an object. A new object is created that has an exact copy of the values in the original object. It clone the first level.
+
+If any of the fields of the object are references to other objects, just the reference addresses are copied i.e., only the memory address is copied.
+
+`Deep copy` copies all fields, and makes copies of dynamically allocated memory pointed to by the fields. A deep copy occurs when an object is copied along with the objects to which it refers. To make a deep cloning we can use JSON.
+<a href="https://medium.com/@manjuladube/understanding-deep-and-shallow-copy-in-javascript-13438bad941c">Understanding Deep and Shallow Copy in Javascript</a>
+
+```javascript
+const originalObj = {
+  nested: {
+    nestedKey: "nestedValue",
+  },
+  key: "value",
+};
+// originalObj points to location 1 in memory
+const assignObj = originalObj;
+// assignObj will point to 1 in memory
+const shallowObj = { ...originalObj };
+// shallowObj points to a new location 2, but references location 1 for the nested object
+const deepObj = JSON.parse(JSON.stringify(originalObj));
+// deepObj clones all parts of the object to a new memory address
+```
+
+The global <a href="https://developer.mozilla.org/en-US/docs/Web/API/structuredClone">structuredClone()</a> method creates a deep clone of a given value using the structured clone algorithm.
+
+<a href="https://web.dev/articles/structured-clone"> More info ... </a>
+
+If you try to check if 2 objects with the same properties are equal with `obj1 = obj2`, it will return `false`. It does this because each object has its own address in memory as we learned about. The easiest way to check the contents of the objects for equality is this.
+
+```javascript
+JSON.stringify(obj1) === JSON.stringify(obj2);
+```
+
+### 📒 Type coercion <a name="15"></a>
+
+Type coercion is the process of converting one type of value into another. There are 3 types of conversion in JavaScript.
+
+- to string
+- to boolean
+- to number
+
+<a href="https://dorey.github.io/JavaScript-Equality-Table/"> JS Equality Table</a>
 
 ### 📒 <a name="16"></a>
 

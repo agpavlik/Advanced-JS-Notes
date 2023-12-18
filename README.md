@@ -19,6 +19,8 @@
   - [call(), apply(), bind(), Currying with bind](#13)
 - [JS Types](#14)
   - [Type coercion](#15)
+  - [Static vs Dynamic Typed](#16)
+- [Closures and Prototypal Inheritance](#17)
 
 ---
 
@@ -457,6 +459,8 @@ let multiplyByTen = multiply.bind(this, 10);
 multiplyByTen(6); // 60
 ```
 
+---
+
 ### 📒 JS Types <a name="14"></a>
 
 `Primitive type` - is a data that only represents a single value. Primitive types are immutable. The variable assigned to a primitive type may be reassigned to a new value, but the original value can not be changed in the same way objects can be modified. Primitives are passed by value, meaning their values are copied and then placed somewhere else in the memory.
@@ -632,9 +636,17 @@ Type coercion is the process of converting one type of value into another. There
 
 <a href="https://dorey.github.io/JavaScript-Equality-Table/"> JS Equality Table</a>
 
-### 📒 <a name="16"></a>
+### 📒 Static vs Dynamic Typed <a name="16"></a>
 
-### 📒 <a name="17"></a>
+The major difference between static and dynamic typed languages is when the types of variables are checked. `Static` typed languages (Java, C, C++, C#) are checked during the compile stage, so all types are known before run-time. `Dynamic` languages (JavaScript, PHP, Python, Ruby, Perl) are checked on the fly, during the execution stage.
+
+Also, after dividing the languages into dynamic and static, they are then divided again into strong and weak typed. `Weakly` typed (JavaScript, PHP, C, C++) languages can make type coercions implicitly. `Strongly` typed (Python, Ruby, C#, Java) do not allow conversions between unrelated types.
+
+![](2.png)
+
+---
+
+### 📒 Closures and Prototypal Inheritance<a name="17"></a>
 
 ### 📒 <a name="18"></a>
 

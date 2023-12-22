@@ -648,6 +648,65 @@ Also, after dividing the languages into dynamic and static, they are then divide
 
 ### 📒 Closures and Prototypal Inheritance<a name="17"></a>
 
+Function review
+
+When we invoke a function, we get two parameters automatically (`this` keyword and `arguments` keyword)
+There are few ways of invoking and creating functions.
+
+```javascript
+// 1
+function one() {
+  return 1;
+}
+one();
+
+// 2 method - invoking a function is as a method
+const obj = {
+  two: function () {
+    // or just two(){}
+    return 2;
+  },
+};
+obj.two();
+
+// 3 - using the call
+function three() {
+  return 3;
+}
+three.call();
+
+// 4 - constructor
+// It accepts parameters and whatever is in the last parameter of the function will be the actual code body.
+const four = new Function("num", "return num");
+four(4);
+```
+
+Functions are first class citizens in JS
+
+```javascript
+// 1 - assign function to variables
+var stuff = function () {};
+
+// 2 - pass function into arguments
+function a(fn) {
+  fn();
+}
+a(function () {
+  console.log("hi");
+});
+
+// 3 - return function as a value from another function
+function b() {
+  return function c() {
+    console.log("bye");
+  };
+}
+b();
+b()();
+```
+
+`Higher order functions` are simply a function that can take a function as an argument or a function that returns another function.
+
 ### 📒 <a name="18"></a>
 
 ### 📒 <a name="19"></a>

@@ -21,10 +21,19 @@
   - [Type coercion](#15)
   - [Static vs Dynamic Typed](#16)
 - [Closures and Prototypal Inheritance](#17)
+  - [Function review ](#18)
+  - [Closures](#19)
+  - [Prototypal Inheritance](#20)
+- [Object Oriented Programming](#21)
+- [Functional Programming]
+- [OOP vs FP]
+- [Asynchronous JS]
+- [Modules in JS]
+- [Error Handling]
 
 ---
 
-### JS FOUNDATION <a name="1"></a>
+## JS FOUNDATION <a name="1"></a>
 
 ### 📒 Javascript Engine <a name="2"></a>
 
@@ -461,7 +470,7 @@ multiplyByTen(6); // 60
 
 ---
 
-### 📒 JS Types <a name="14"></a>
+## 📒 JS Types <a name="14"></a>
 
 `Primitive type` - is a data that only represents a single value. Primitive types are immutable. The variable assigned to a primitive type may be reassigned to a new value, but the original value can not be changed in the same way objects can be modified. Primitives are passed by value, meaning their values are copied and then placed somewhere else in the memory.
 
@@ -646,9 +655,9 @@ Also, after dividing the languages into dynamic and static, they are then divide
 
 ---
 
-### 📒 Closures and Prototypal Inheritance<a name="17"></a>
+## 📒 Closures and Prototypal Inheritance<a name="17"></a>
 
-Function review
+### 📒 Function review <a name="18"></a>
 
 When we invoke a function, we get two parameters automatically (`this` keyword and `arguments` keyword)
 There are few ways of invoking and creating functions.
@@ -707,9 +716,9 @@ b()();
 
 `Higher order functions` are simply a function that can take a function as an argument or a function that returns another function.
 
-### 📒 <a name="18"></a>
+### 📒 Closures <a name="19"></a>
 
-### 📒 <a name="19"></a>
+### 📒 Prototypal Inheritance <a name="20"></a>
 
 #### 🚩 R <a name="5"></a>
 

@@ -688,6 +688,15 @@ three.call();
 // It accepts parameters and whatever is in the last parameter of the function will be the actual code body.
 const four = new Function("num", "return num");
 four(4);
+// Almost everything in JavaScript can be created with a constructor. Even basic JavaScript types like numbers and strings can be created using a constructor.
+
+// examples of constructor functions in JavaScript
+const five = new Number(5);
+const assignFive = 5;
+
+// this is different than using regular assignment
+const newString = new String(`I am a new string`);
+const assignString = `I am an assigned string`;
 ```
 
 `Higher order functions` is a function that either takes a function as an argument or returns another function. There are 3 kinds of functions in JavaScript:
@@ -738,6 +747,90 @@ multByTen(5); // 50
 ```
 
 ### 📒 Closures <a name="19"></a>
+
+`Closure` is simply a combination of function and the lexical environment from which it was declared. Closures allow a function to access variables from an enclosing scope or environment even after it leaves the scope in which it was declared. In other words, a closure gives you access to its outer functions scope from the inner scope. The JavaScript engine will keep variables around inside functions that have a reference to them, instead of "sweeping" them away after they are popped off the call stack.
+
+```javascript
+function a() {
+  let grandpa = 'grandpa'
+  return function b() {
+    let father = 'father'
+    let random = 12345 // not referenced, will get garbage collected
+    return function c() {
+      let son = 'son'
+      return `closure inherited all the scopes: ${grandpa} > ${father} > ${son}`
+    }
+  }
+}
+
+a()()() // closure inherited all the scopes: grandpa > father > son
+
+// An example with arrow function
+const closure = grandma => mother => daughter => return `${grandma} > ${mother} > ${daughter}`
+
+// grandma > mother > daughter
+```
+
+So closure is a feature of JavaScript. Function C is inside a function A and function B, the JavaScript engine is going to say - "All right, I'll create a closure for you. All the variables outside of the function C I'm going to keep around if C is using it."
+
+Two of the major reasons closures are so beneficial are `memory efficiency` and `encapsulation`.
+
+Using closures makes your code more memory efficient.
+
+```javascript
+function inefficient(idx) {
+  const bigArray = new Array(7000).fill("😄");
+  console.log("created!");
+  return bigArray[idx];
+}
+
+function efficient() {
+  const bigArray = new Array(7000).fill("😄");
+  console.log("created again!");
+  return function (idx) {
+    return bigArray[idx];
+  };
+}
+
+inefficient(688);
+inefficient(1000);
+inefficient(6500);
+
+const getEfficient = efficient();
+
+efficient(688);
+efficient(1000);
+efficient(6500);
+
+// inefficient created the bigArray 3 times
+// efficient created the bigArray only once
+```
+
+`Encapsulation` means the restriction of direct access to some of an object's components. It hides as much as possible of an object's internal parts and only exposes the necessary parts to run. Why use encapsulation?
+
+- Security - Controlled access
+- Hide Implementation and Expose Behaviours
+- Loose Coupling - Modify the implementation at any time
+
+```javascript
+const encapsulation = () => {
+  let people = [];
+  const setName = (name) => people.push(name);
+  const getName = (idx) => people[idx];
+  const rmName = (idx) => people.splice(idx, 1);
+  return {
+    setName,
+    getName,
+    rmName,
+  };
+};
+const data = encapsulation();
+data.setName("Brittney"); // 0
+data.getName(0); // 'Brittney'
+data.rmName(0); // ['Brittney']
+// you have no access to the array people
+// can only change it via methods provided
+```
 
 ### 📒 Prototypal Inheritance <a name="20"></a>
 

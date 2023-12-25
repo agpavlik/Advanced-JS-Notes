@@ -834,11 +834,81 @@ data.rmName(0); // ['Brittney']
 
 ### 📒 Prototypal Inheritance <a name="20"></a>
 
+Almost all objects in Javascript pass down properties through a prototype chain. We call this chain, `prototypal inheritance`. The child of the object "inherits" properties from its parent. All objects in JavaScript are descended from the Object constructor unless deliberately created or altered to not do so. The objects inherit methods and properties from Object.prototype.
+
+The prototype property also has an accessor property called `__proto__` that creates a link between the current object and points to the object it was created from, the "prototype".
+
+```javascript
+Object.prototype.__proto__;
+// null
+// it is end of the chain and nothing to show
+
+Object.prototype;
+{
+  __proto__: null;
+  // ...more methods and properties
+}
+
+Object;
+// function Object()
+// This is the object constructor function
+
+Object.prototype.constructor;
+// function Object()
+// Points to the constructor
+
+Object.__proto__;
+// function () {...}
+// Because it is created with a constructor function
+```
+
+Example with `__proto__`
+
+```javascript
+let dragon = {
+  name: "Tanya",
+  fire: true,
+  fight() {
+    console.log("5");
+  },
+  sing() {
+    if (this.fire) {
+      console.log(`I am ${this.name}, the breather of fireeeeee`);
+    }
+  },
+};
+
+let lizard = {
+  name: "Kiki",
+  fight() {
+    console.log("1");
+  },
+};
+
+// Create a prototype chain that that says - I want Lizard to inherit all these properties and methods from Dragon.
+lizard.__proto__ = dragon; // we are able to inherite through prototype chain all the properties and methods of the Dragon and override anything that we have already declared in Lizard.
+lizard.sing(); // `I am Kiki, the breather of fireeeeee`
+lizard.fight(); // 1
+
+dragon.__proto__;
+// Base object
+dragon.isPrototypeOf(lizard); // true
+lizard.isPrototypeOf(dragon); // false
+
+for (let prop in lizard) {
+  console.log(prop);
+} // name fight fire sing
+
+for (let prop in lizard) {
+  if (lzard.hasOwnProperty(prop)) {
+    console.log(prop);
+  }
+} // name fight
+```
+
+## 📒 Object Oriented Programming <a name="21"></a>
+
 #### 🚩 R <a name="5"></a>
-
-```
-
-```
 
 ```
 

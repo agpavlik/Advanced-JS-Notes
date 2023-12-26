@@ -838,6 +838,8 @@ Almost all objects in Javascript pass down properties through a prototype chain.
 
 The prototype property also has an accessor property called `__proto__` that creates a link between the current object and points to the object it was created from, the "prototype".
 
+Only functions has a prototype property and it references to an object used to attach properties that will be inherited by objects further down the prototype chain. The last object in the chain is this built in object.prototype.
+
 ```javascript
 Object.prototype.__proto__;
 // null
@@ -904,6 +906,61 @@ for (let prop in lizard) {
     console.log(prop);
   }
 } // name fight
+```
+
+> Exercise 1
+
+```javascript
+// Exercise - extend the functionality of a built in object
+// Date object => to have a new method .lastYear() which shows you last year 'YYYY' format.
+new Date("1900-10-10").lastYear();
+//'1899'
+```
+
+> Solution
+
+```javascript
+Date.prototype.lastYear = function () {
+  return this.getFullYear() - 1;
+};
+new Date("1900-10-10").lastYear();
+```
+
+> Exercise 2
+
+```javascript
+// Modify .map() to print'🗺️' at the end of each iteration.
+console.log([1, 2, 3].map());
+```
+
+> Solution
+
+```javascript
+Array.prototype.map = function () {
+  let arr = [];
+  for (let i = 0; i < this.length; i++) {
+    arr.push(this[i] + "🗺️");
+  }
+};
+console.log([1, 2, 3].map());
+```
+
+> Exwrcise
+
+```javascript
+// How would you be able to create your own .bind() method using call or apply.
+Function.prototype.bind = function () {};
+```
+
+> Solution
+
+```javascript
+Function.prototype.bind = function (whoIsCallingMe) {
+  const self = this;
+  return function () {
+    return self.apply(whoIsCallingMe, arguments);
+  };
+};
 ```
 
 ## 📒 Object Oriented Programming <a name="21"></a>

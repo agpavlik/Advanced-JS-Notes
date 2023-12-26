@@ -975,6 +975,150 @@ There are 2 basic philosophies when it comes to how you structure your programs,
 
 `Object Oriented Programming`, or OOP, is the idea that all code should be grouped into "boxes" (objects) to make your program easier to read and understand. Keeping the data encapsulated helps to keep the program organized. Each object has a state that defines what it does and methods (functions on an object) that can use or modify the state Considering almost everything in JavaScript is an object, you would think this would be easy to do.
 
+Example
+
+```javascript
+// step 1 - is an object
+const elf1 = {
+  name: 'Dobby',
+  type: 'house',
+  weapon: 'cloth',
+  say: function() {
+    return `Hi, my name is ${this.name}, I am a ${this.type} elf.`
+  }
+  attack: function() {
+    return `attack with ${this.weapon}`
+  }
+}
+
+const elf2 = {
+  name: 'Legolas',
+  type: 'high',
+  weapon: 'bow',
+  say: function() {
+    return `Hi, my name is ${this.name}, I am a ${this.type} elf.`
+  }
+  attack: function() {
+    return `attack with ${this.weapon}`
+  }
+}
+
+elf1.attack()
+// attack with cloth
+elf2.attack()
+// attack with bow
+```
+
+Imagine adding more characters, things would get out of control quickly. So, another way to create objects was introduced, `factory functions`. Factory functions return a new object every time they are ran. This could improve the code somewhat.
+
+```javascript
+// step 2 - factory function.
+function createElf(name, weapon) {
+  return {
+    name: name,
+    weapon: weapon,
+    attack() {
+      return console.log(name + " attacks with " + weapon);
+    },
+  };
+}
+
+const peter = createElf("Peter", "stones");
+peter.attack(); // Peter attacks with stones
+const sam = createElf("Sam", "fire");
+sam.attack(); // Sam attacks with fire
+```
+
+If we added more characters, we would run into some of the same issues again. Not only is the code not DRY, the attack method is being created and taking up memory space for every new elf. This is not very efficient. How do we solve this? Well, we could separate the methods out into a `store`.
+
+```javascript
+// step 3 - stores. Separate the methods out into a store in order to make code more efficient.
+const elfFunctions = {
+  attack: function () {
+    return this.name + "atack with " + this.weapon;
+  },
+};
+function createElf(name, weapon) {
+  return {
+    name: name,
+    weapon: weapon,
+  };
+}
+
+const sam = createElf("Sam", "bow");
+const peter = createElf("Peter", "bow");
+sam.attack();
+```
+
+Having a store saved us some efficiency in memory, but this was a lot of manual work to assign each method. So, we were given Object.create to help create this chain without having to assign each method.
+
+```javascript
+const elfFunctions = {
+  attack: function () {
+    return this.name + "atack with " + this.weapon;
+  },
+};
+
+function createElf(name, weapon) {
+  // this creates the __proto__ chain to the store
+  let newElf = Object.create(elfFunctions);
+  newElf.name = name;
+  newElf.weapon = weapon;
+  return newElf;
+}
+
+const dobby = createElf("Dobby", "cloth");
+const legolas = createElf("Legolas", "bow");
+dobby.attack; // attack with cloth
+legolas.attack; // attack with bow
+```
+
+Using Object.create is true prototypal inheritance, the code is cleaner and easier to read. However, you will not see this being used in most programs. Before Object.create came around, we had the ability to use `constructor functions`. The number and string functions were constructed and invoked with the new keyword and they were capitalized.
+
+The `new` keyword actually changes the meaning of this for the constructor function. Without `new`, this will point to the window object instead of the object that we just created. Properties added to a constructor function can only be done using the this keyword, regular variables do not get added to the object.
+
+```javascript
+// step 5 - Constructor Functions
+function Elf(name, weapon) {
+  // not returning anything
+  this.name = name;
+  this.weapon = weapon;
+} // All constructor function should start with capital letter
+
+Elf.prototype.attack = function () {
+  // cannot be an arrow function
+  return "atack with " + this.weapon;
+}; // This would need to be repeated for each method.
+
+const sam = new Elf("Sam", "bow"); // new keyword returns the object Elf and creates the Elf constructor. 'new' works with 'this'.
+const peter = new Elf("Peter", "bow");
+sam.attack();
+```
+
+Prototype is a little weird and hard to read unless you really understand your prototypal inheritance. No one really liked using the prototype way of adding methods, so ES6 JavaScript gave us the `class` keyword. However, classes in JavaScript are not true classes, they are syntactic sugar. Under the hood, it is still using the old prototype method. They are in fact just "special functions" with one big difference; functions are hoisted and classes are not. You need to declare your class before it can be used in your codebase. Classes also come with a new method, the constructor that creates and instantiates an object created with class. Classes are able to be extended upon using the `extends` keyword, allowing subclasses to be created. If there is a constructor present in the extended class, the `super` keyword is needed to link the constructor to the base class. You can check if something is inherited from a class by using the keyword instanceof to compare the new object to the class.
+
+```javascript
+// step 6 - classes
+// Class keyword is still just prototypal inheritance
+class Elf {
+  constructor(name, weapon) {
+    this.name = name;
+    this.weapon = weapon;
+  }
+  // attack is outside because everytime we use the New keyword the constructor
+  // function gets run
+  attack() {
+    return "attacks with " + this.weapon;
+  }
+}
+
+const peter = new Elf("Peter", "stones");
+console.log(peter instanceof Elf);
+console.log(peter.attack());
+const sam = new Elf("Sam", "fire");
+console.log(sam.attack());
+```
+
 #### 🚩 R <a name="5"></a>
 
 ```

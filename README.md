@@ -18,6 +18,7 @@
   - [`this` keyword](#12)
   - [call(), apply(), bind(), Currying with bind](#13)
 - [JS Types](#14)
+  - [Primitive and Non-primitive JS Types](#141)
   - [Type coercion](#15)
   - [Static vs Dynamic Typed](#16)
 - [Closures and Prototypal Inheritance](#17)
@@ -472,6 +473,8 @@ multiplyByTen(6); // 60
 
 ## 📒 JS Types <a name="14"></a>
 
+### 📒 Primitive and Non-primitive JS Types <a name="141"></a>
+
 `Primitive type` - is a data that only represents a single value. Primitive types are immutable. The variable assigned to a primitive type may be reassigned to a new value, but the original value can not be changed in the same way objects can be modified. Primitives are passed by value, meaning their values are copied and then placed somewhere else in the memory.
 
 - <a href='https://developer.mozilla.org/en-US/docs/Glossary/Number'>Number</a>
@@ -655,7 +658,7 @@ Also, after dividing the languages into dynamic and static, they are then divide
 
 ---
 
-## 📒 Closures and Prototypal Inheritance<a name="17"></a>
+## 📒 Closures and Prototypal Inheritance <a name="17"></a>
 
 ### 📒 Function review <a name="18"></a>
 
@@ -945,7 +948,7 @@ Array.prototype.map = function () {
 console.log([1, 2, 3].map());
 ```
 
-> Exwrcise
+> Exercise
 
 ```javascript
 // How would you be able to create your own .bind() method using call or apply.
@@ -964,6 +967,12 @@ Function.prototype.bind = function (whoIsCallingMe) {
 ```
 
 ## 📒 Object Oriented Programming <a name="21"></a>
+
+###
+
+There are 2 basic philosophies when it comes to how you structure your programs, `object oriented` and `functional`. Each style has its use in programming, it is not one over the other, but merely a preference in style.
+
+`Object Oriented Programming`, or OOP, is the idea that all code should be grouped into "boxes" (objects) to make your program easier to read and understand. Keeping the data encapsulated helps to keep the program organized. Each object has a state that defines what it does and methods (functions on an object) that can use or modify the state Considering almost everything in JavaScript is an object, you would think this would be easy to do.
 
 #### 🚩 R <a name="5"></a>
 

@@ -26,6 +26,7 @@
   - [Closures](#19)
   - [Prototypal Inheritance](#20)
 - [Object Oriented Programming](#21)
+  - [OOP introduction](#22)
 - [Functional Programming]
 - [OOP vs FP]
 - [Asynchronous JS]
@@ -968,7 +969,7 @@ Function.prototype.bind = function (whoIsCallingMe) {
 
 ## 📒 Object Oriented Programming <a name="21"></a>
 
-###
+### 📒 OOP introduction<a name="22"></a>
 
 There are 2 basic philosophies when it comes to how you structure your programs, `object oriented` and `functional`. Each style has its use in programming, it is not one over the other, but merely a preference in style.
 

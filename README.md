@@ -1097,7 +1097,7 @@ const peter = new Elf("Peter", "bow");
 sam.attack();
 ```
 
-Prototype is a little weird and hard to read unless you really understand your prototypal inheritance. No one really liked using the prototype way of adding methods, so ES6 JavaScript gave us the `class` keyword. However, classes in JavaScript are not true classes, they are syntactic sugar. Under the hood, it is still using the old prototype method. They are in fact just "special functions" with one big difference; functions are hoisted and classes are not. You need to declare your class before it can be used in your codebase. Classes also come with a new method, the constructor that creates and instantiates an object created with class. Classes are able to be extended upon using the `extends` keyword, allowing subclasses to be created. If there is a constructor present in the extended class, the `super` keyword is needed to link the constructor to the base class. You can check if something is inherited from a class by using the keyword instanceof to compare the new object to the class.
+Prototype is a little weird and hard to read unless you really understand your prototypal inheritance. No one really liked using the prototype way of adding methods, so ES6 JavaScript gave us the `class` keyword. However, classes in JavaScript are not true classes, they are syntactic sugar. Under the hood, it is still using the old prototype method. They are in fact just "special functions" with one big difference; functions are hoisted and classes are not. You need to declare your class before it can be used in your codebase.
 
 ```javascript
 // step 6 - classes
@@ -1109,7 +1109,7 @@ class Elf {
   }
   // attack is outside because everytime we use the New keyword the constructor function gets run
   attack() {
-    return "attacks with " + this.weapon;
+    return `${this.name} Attack with ${this.weapon}`;
   }
 }
 
@@ -1117,6 +1117,49 @@ const peter = new Elf("Peter", "stones");
 console.log(peter instanceof Elf); // created instance of a class
 const sam = new Elf("Sam", "fire");
 console.log(sam.attack());
+```
+
+Classes also come with a new method, the constructor that creates and instantiates an object created with class. Classes are able to be extended upon using the `extends` keyword, allowing subclasses to be created. If there is a constructor present in the extended class, the `super` keyword is needed to link the constructor to the base class. You can check if something is inherited from a class by using the keyword `instanceof` to compare the new object to the class.
+
+```javascript
+//Inheritance
+class Character {
+  constructor(name, weapon) {
+    this.name = name;
+    this.weapon = weapon;
+  }
+
+  attack() {
+    return `${this.name} Attack with ${this.weapon}`;
+  }
+}
+
+class Elf extends Character {
+  constructor(name, weapon, type) {
+    super(name, weapon);
+    this.type = type;
+  }
+}
+
+class Ogre extends Character {
+  constructor(name, weapon, color) {
+    super(name, weapon);
+    this.color = color;
+  }
+
+  makeFort() {
+    return "Strongest fort in the world made...";
+  }
+}
+
+const dolby = new Elf("Dolby", "Cloth", "House");
+console.log(dolby);
+console.log(dolby.attack());
+
+const shrek = new Ogre("Shrek", "Club", "green");
+console.log(shrek);
+console.log(shrek.attack());
+console.log(shrek.makeFort());
 ```
 
 ### 📒 this <a name="23"></a>
@@ -1150,7 +1193,6 @@ const person3 = {
     console.log("hi" + this.setTimeout);
   }.bind(window),
 };
-
 person3.hi();
 
 // 4 way - Arrow functions
@@ -1166,7 +1208,6 @@ const person4 = {
     return inner();
   },
 };
-
 person4.hi();
 ```
 

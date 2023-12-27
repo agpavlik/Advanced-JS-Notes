@@ -32,7 +32,7 @@
   - [4 pillars of OOP](#25)
 - [Functional Programming](#26)
   - [Pure function](#27)
-  - [](#28)
+  - [Referential transparency](#28)
   - [](#29)
 - [OOP vs FP]
 - [Asynchronous JS]
@@ -1277,7 +1277,26 @@ So, the goal of functional programming is to minimize side effects by isolating 
 - Be pure if possible.
 - Return something.
 
-### 📒 <a name="28"></a>
+### 📒 Referential transparency <a name="28"></a>
+
+One important concept of functional programming is `referential transparency`, the ability to replace an expression with the resulting value without changing the result of the program.
+
+```javascript
+function a(num1, num2) {
+  return num1 + num2;
+}
+
+function b(num) {
+  return num * 2;
+}
+
+a(3, 4); // should always return 7
+
+b(a(3, 4)); // 14
+// so it could be changed to
+b(7); // 14
+// and the output is the same
+```
 
 ### 📒 <a name="29"></a>
 

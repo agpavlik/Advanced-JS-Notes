@@ -29,7 +29,8 @@
   - [OOP introduction](#22)
   - [this](#23)
   - [Private and Public Fields](#24)
-- [Functional Programming]
+  - [4 pillars of OOP](#25)
+- [Functional Programming](#26)
 - [OOP vs FP]
 - [Asynchronous JS]
 - [Modules in JS]
@@ -1242,9 +1243,26 @@ class Rectangle {
 }
 ```
 
-### 📒 <a name="25"></a>
+### 📒 4 pillars of OOP <a name="25"></a>
 
-### 📒 <a name="26"></a>
+- `Encapsulation`. OOP puts things in an object in a container and organizes things into units that model real world applications. We wrap code into boxes that are related to one another so that these boxes can just interact with each other using the methods and properties that we make available.
+- `Abstraction`. Hiding the complexity from the user that is creating simpler interfaces, such class. The idea of abstraction says - "Here are the methods and properties that you can use, don't worry about everything else. I'll do all the calculations behind the scenes."
+- `Inheritance`. By inheriting from other classes, we avoid having to rewrite the same code, and we also save memory space by having shared methods.
+- `Polymorphism.`. The idea is the ability to call the same method on different objects and each object responding in different way. And polymorphism is useful because we don't have to necessarily copy and paste code over and over. We can re-use some of the functionality from a superclass to adapt to our own specific needs.
+
+---
+
+## 📒 Functional Programming <a name="26"></a>
+
+### 📒 <a name="27"></a>
+
+### 📒 <a name="28"></a>
+
+### 📒 <a name="29"></a>
+
+### 📒 <a name="30"></a>
+
+### 📒 <a name="31"></a>
 
 #### 🚩 R <a name="5"></a>
 

@@ -1105,8 +1105,7 @@ class Elf {
     this.name = name;
     this.weapon = weapon;
   }
-  // attack is outside because everytime we use the New keyword the constructor
-  // function gets run
+  // attack is outside because everytime we use the New keyword the constructor function gets run
   attack() {
     return "attacks with " + this.weapon;
   }

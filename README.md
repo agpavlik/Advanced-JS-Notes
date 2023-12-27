@@ -31,6 +31,9 @@
   - [Private and Public Fields](#24)
   - [4 pillars of OOP](#25)
 - [Functional Programming](#26)
+  - [Pure function](#27)
+  - [](#28)
+  - [](#29)
 - [OOP vs FP]
 - [Asynchronous JS]
 - [Modules in JS]
@@ -38,7 +41,7 @@
 
 ---
 
-## JS FOUNDATION <a name="1"></a>
+## 🚩 JS FOUNDATION <a name="1"></a>
 
 ### 📒 Javascript Engine <a name="2"></a>
 
@@ -475,7 +478,7 @@ multiplyByTen(6); // 60
 
 ---
 
-## 📒 JS Types <a name="14"></a>
+## 🚩 JS Types <a name="14"></a>
 
 ### 📒 Primitive and Non-primitive JS Types <a name="141"></a>
 
@@ -662,7 +665,7 @@ Also, after dividing the languages into dynamic and static, they are then divide
 
 ---
 
-## 📒 Closures and Prototypal Inheritance <a name="17"></a>
+## 🚩 Closures and Prototypal Inheritance <a name="17"></a>
 
 ### 📒 Function review <a name="18"></a>
 
@@ -970,7 +973,7 @@ Function.prototype.bind = function (whoIsCallingMe) {
 };
 ```
 
-## 📒 Object Oriented Programming <a name="21"></a>
+## 🚩 Object Oriented Programming <a name="21"></a>
 
 ### 📒 OOP introduction<a name="22"></a>
 
@@ -1252,9 +1255,27 @@ class Rectangle {
 
 ---
 
-## 📒 Functional Programming <a name="26"></a>
+## 🚩 Functional Programming <a name="26"></a>
 
-### 📒 <a name="27"></a>
+### 📒 Pure function<a name="27"></a>
+
+`Functional programming` has the same goals in mind as object oriented programming, to keep your code understanable, easy to extend, easy to maintain, memory efficient, and DRY. Instead of objects, it uses reusable functions to create and act on data.
+
+Functional programming is based on a separation of concerns similar to object oriented programming. However, in functional programming, there is a complete separation between the data and the behaviors of a program. There is also an idea that once something is created, it should not be changed, being immutable. Unlike OOP, shared state is avoided as functional programming works on the idea of `pure functions`.
+
+A `pure function` has no side effects to anything outside of it and given the same input will always output the same value. They do not change any data passed into them, but create new data to return without altering the original.
+
+However, it is not possible to have 100% pure functions. At some point you need to interact with the dom or fetch an api. Even console.log makes a function unpure because it uses the window object outside of the function. The fact is a program cannot exist without side effects.
+
+So, the goal of functional programming is to minimize side effects by isolating them away from the data. Build lots of very small, reusable and predictable pure functions that do the following:
+
+- Complete 1 task per function.
+- Do not mutate state.
+- Do not share state.
+- Be predictable.
+- Be composable, one input and one output.
+- Be pure if possible.
+- Return something.
 
 ### 📒 <a name="28"></a>
 
@@ -1264,7 +1285,7 @@ class Rectangle {
 
 ### 📒 <a name="31"></a>
 
-#### 🚩 R <a name="5"></a>
+## 🚩 R <a name="5"></a>
 
 ```
 

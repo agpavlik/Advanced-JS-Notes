@@ -27,6 +27,7 @@
   - [Prototypal Inheritance](#20)
 - [Object Oriented Programming](#21)
   - [OOP introduction](#22)
+  - [this](#23)
 - [Functional Programming]
 - [OOP vs FP]
 - [Asynchronous JS]
@@ -1050,9 +1051,10 @@ const peter = createElf("Peter", "bow");
 sam.attack();
 ```
 
-Having a store saved us some efficiency in memory, but this was a lot of manual work to assign each method. So, we were given Object.create to help create this chain without having to assign each method.
+Having a store saved us some efficiency in memory, but this was a lot of manual work to assign each method. So, we were given `Object.create` to help create this chain without having to assign each method.
 
 ```javascript
+// step 4 - Object.create
 const elfFunctions = {
   attack: function () {
     return this.name + "atack with " + this.weapon;
@@ -1112,11 +1114,67 @@ class Elf {
 }
 
 const peter = new Elf("Peter", "stones");
-console.log(peter instanceof Elf);
-console.log(peter.attack());
+console.log(peter instanceof Elf); // created instance of a class
 const sam = new Elf("Sam", "fire");
 console.log(sam.attack());
 ```
+
+### 📒 this <a name="23"></a>
+
+```javascript
+// 1 way - New binding
+// `this` new binding was used with constructor functions.
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+const person1 = new Person("Xavier", 55);
+person1;
+
+// 2 way - Implicit binding.
+// The most common way to use this.
+const person2 = {
+  name: "Karen",
+  age: 40,
+  hi() {
+    console.log("hi ", +this.name);
+  },
+};
+
+// 3 way - Explicit binding.
+// This use as a window object
+const person3 = {
+  name: "Karen",
+  age: 40,
+  hi: function () {
+    console.log("hi" + this.setTimeout);
+  }.bind(window),
+};
+
+person3.hi();
+
+// 4 way - Arrow functions
+// With the arrow functions, we can do lexical scoping, wherever we write the function. That's what this binds to. If we run inner here and we run it, everything is working because we're using arrow functions. If we didn't use an arrow function and just used a regular function, in that case, this would be the window object.
+
+const person4 = {
+  name: "Karen",
+  age: 40,
+  hi: function () {
+    var inner = () => {
+      console.log("hi ", this.name);
+    };
+    return inner();
+  },
+};
+
+person4.hi();
+```
+
+### 📒 <a name="24"></a>
+
+### 📒 <a name="25"></a>
+
+### 📒 <a name="26"></a>
 
 #### 🚩 R <a name="5"></a>
 

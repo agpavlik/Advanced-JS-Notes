@@ -35,9 +35,10 @@
   - [Referential transparency](#28)
   - [Idempotence](#29)
   - [Imperative vs Declerative](#30)
-  - [](#31)
-  - [](#32)
-  - [](#33)
+  - [Immutability](#31)
+  - [Currying](#32)
+  - [Partial Application](#33)
+  - [](#34)
 - [OOP vs FP]
 - [Asynchronous JS]
 - [Modules in JS]
@@ -1343,7 +1344,50 @@ let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 arr.forEach((item) => console.log(item));
 ```
 
-### 📒 <a name="31"></a>
+### 📒 Immutability <a name="31"></a>
+
+Immutability is simply not modifying the original data or state. Instead we should create copies of the state inside our functions and return a new version of the state.
+
+In functional programming the idea of immutability is very important. We can change things inside of our function, but we don't want to affect the outside world in our programs.
+
+```javascript
+// Bad code
+const obj = {name: 'Alex'}
+function clone(obj) {
+  return {...obj} // this is pure
+}
+
+obj.name = 'Joe' //mutated the state
+
+// Better code
+function updateName(obj) {
+  const newObj = clone(obj)
+  newObj.name = 'Joe'
+  return newObj
+}
+
+const updatedNameObj = updateName(obj)
+console.log(`obj = ${obj}`, `updatedNameObj = ${updatedNameObj})
+// obj = {name: 'Alex'} updatedNameObj = {name: 'Joe'}
+```
+
+You may be thinking that this could get really expensive, memory wise, to just copy code over and over. However, there is something called `structural sharing` that allows the data to only copy new information and points to the original state for any commonalities.
+
+### 📒 Currying <a name="32"></a>
+
+`Currying` is the technique of translating the evaluation of a function that takes multiple arguments, into evaluating a sequence of functions, each with a single argument.
+
+```javascript
+const multiply = (a, b) => a * b;
+const curriedMultiply = (a) => (b) => a * b;
+curriedMultiply(5)(20);
+const multiplyBy5 = curriedMultiply(5);
+multiplyBy5(20);
+```
+
+### 📒 Partial Application <a name="33"></a>
+
+### 📒 Compose and Pipe<a name="34"></a>
 
 ## 🚩 R <a name="5"></a>
 

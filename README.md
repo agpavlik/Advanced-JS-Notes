@@ -33,7 +33,11 @@
 - [Functional Programming](#26)
   - [Pure function](#27)
   - [Referential transparency](#28)
-  - [](#29)
+  - [Idempotence](#29)
+  - [Imperative vs Declerative](#30)
+  - [](#31)
+  - [](#32)
+  - [](#33)
 - [OOP vs FP]
 - [Asynchronous JS]
 - [Modules in JS]
@@ -1298,9 +1302,46 @@ b(7); // 14
 // and the output is the same
 ```
 
-### 📒 <a name="29"></a>
+### 📒 Idempotence <a name="29"></a>
 
-### 📒 <a name="30"></a>
+`Idempotence` is another important piece of functional programming. It is the idea that given the same input to a function, you will always return the same output. The function could be used over and over again and nothing changes.
+This is how you make your code predictable.
+
+```javascript
+function notGood() {
+  return Math.random();
+  // new Date();
+}
+
+function good() {
+  return 5;
+}
+
+Math.abs(Math.abs(10));
+```
+
+### 📒 Imperative vs Declerative<a name="30"></a>
+
+`Imperative code` tells the computer what to do and how to do it.
+
+`Declarative code` only tells the computer what to do, but not how to do things.
+
+Humans are declarative by nature, but computers typically need more imperative type programming.
+
+However, using higher level languages like JavaScript is actually being less declarative. This is important in function programming because we want to be more declarative to better understand our code and let the computer handle the dirty work of figuring out the best way to do something.
+
+![](3.png)
+
+```javascript
+// more imperative
+for (let i = 0; i < 10; i++) {
+  console.log(i);
+}
+
+// more declarative
+let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+arr.forEach((item) => console.log(item));
+```
 
 ### 📒 <a name="31"></a>
 

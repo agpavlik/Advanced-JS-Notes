@@ -38,8 +38,9 @@
   - [Immutability](#31)
   - [Currying](#32)
   - [Partial Application](#33)
-  - [](#34)
-- [OOP vs FP]
+  - [Compose and Pipe](#34)
+  - [FP Example](#35)
+- [OOP vs FP](#36)
 - [Asynchronous JS]
 - [Modules in JS]
 - [Error Handling]
@@ -1423,6 +1424,92 @@ pipeFn(-50); // 150
 ```
 
 The Pipeline Operator is in the experimental stage 1 of being introduced to JavaScript. Stage 1 means that it has only started the process and could be years before it is a part of the language. The pipeline operator, |>, would be syntactic sugar for composing and piping functions the long way.
+
+### 📒 FP Example <a name="35"></a>
+
+```javascript
+// Amazon shopping
+/*
+   Implement a cart feature:
+     1. Add items to cart.
+     2. Add 30% tax to item in cart.
+     3. Buy item: cart --> purchases.
+     4. Empty cart
+     5. Accept refunds.
+     6. Track user history.
+  */
+
+const user = {
+name: 'Kim',
+active: true,
+cart: [],
+purchases: []
+}
+
+// 6
+const amazonHistory = []
+
+const compose = (f, g) => (...args) => f(g(...args));
+purchaseItem(
+emptyCart,
+buyItem,
+applyTaxToItems,
+addItemToCart
+)(user, {name: 'laptop', price: 200})
+
+
+// purchaseItem(user, {name:'laptop', price:344})
+
+// function purchaseItem(user, item) {
+// return Object.assign({}, user, { purchases: item}) // Create a new object using an empty object as a first parameter and the actual object that were are coying over. And then add any updates to that object as a third parameter. So purchases is going to include the item.
+// }
+
+function purchaseItem(...fns) {
+return fns.reduce(compose)
+} // it is receive a bounch of functions and return and run these functions
+
+// 1
+function addItemToCart(user, item) {
+amazonHistory.push(user)
+const updateCart = user.cart.concat(item)
+return Object.assign({}, user, { cart: updateCart }) // return user with a new cart item
+}
+
+// 2
+function applyTaxToItems(user) {
+amazonHistory.push(user)
+const {cart} = user;
+const taxRate = 1.3;
+const updatedCart = cart.map(item => {
+return {
+name: item,
+price: item.price\*taxRate
+}
+})
+return Object.assign({}, user, { cart: updatedCart })
+}
+
+// 3
+function buyItem(user) {
+amazonHistory.push(user)
+return Object.assign({}, user, {purchases: user.cart})
+}
+
+// 4
+function emptyCart(user) {
+amazonHistory.push(user)
+return Object.assign({}, user, {cart: []})
+}
+
+```
+
+## 🚩 OOP vs FP <a name="36"></a>
+
+### 📒 <a name="37"></a>
+
+### 📒 <a name="38"></a>
+
+### 📒 <a name="39"></a>
 
 ## 🚩 R <a name="5"></a>
 

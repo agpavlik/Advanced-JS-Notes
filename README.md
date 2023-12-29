@@ -41,7 +41,9 @@
   - [Compose and Pipe](#34)
   - [FP Example](#35)
 - [OOP vs FP](#36)
-- [Asynchronous JS]
+  - [Composition vs Inheritance](#37)
+  - [OOP vs FP](#38)
+- [Asynchronous JS](#39)
 - [Modules in JS]
 - [Error Handling]
 
@@ -1530,8 +1532,8 @@ Key differences:
 - In a functional program, we have the idea of stateless. We don't modify state. State is immutable. / Object oriented programming that is very state full we are modifying state.
 - In functional programming our functions are pure. There are no side effects. It means that the functions that we write don't make an impact on the code that is running outside of that function. / On object oriented programming. There are definitely side effects. Methods manipulate our internal state.
 - Functional programming is quite good at processing large data for applications. If you're analyzing data, user data, maybe using it for a machine learning model. Functional programming works really well for high performance and processors, for example, because you can run it on multiple processors. If you have a few things that require a lot of operations, a lot of little functions apply to it, well then functional programming is usually a good idea. / If, on the other hand, you have many things like characters in a game with not too many operations, with few operations, well then object oriented programming might be a better solution.
--
--
+
+---
 
 ## 🚩 Asynchronous JS <a name="39"></a>
 

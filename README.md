@@ -44,6 +44,8 @@
   - [Composition vs Inheritance](#37)
   - [OOP vs FP](#38)
 - [Asynchronous JS](#39)
+  - [Promises](#40)
+  - [Async Await](#41)
 - [Modules in JS]
 - [Error Handling]
 
@@ -1537,6 +1539,10 @@ Key differences:
 
 ## 🚩 Asynchronous JS <a name="39"></a>
 
-## 🚩 Modules <a name="40"></a>
+### 📒 Promises <a name="40"></a>
 
-## 🚩 Error Handling <a name="41"></a>
+### 📒 Async Await <a name="41"></a>
+
+## 🚩 Modules <a name="42"></a>
+
+## 🚩 Error Handling <a name="43"></a>

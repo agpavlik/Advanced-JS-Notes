@@ -1503,16 +1503,38 @@ return Object.assign({}, user, {cart: []})
 
 ```
 
+---
+
 ## 🚩 OOP vs FP <a name="36"></a>
 
-### 📒 <a name="37"></a>
+### 📒 Composition vs Inheritance<a name="37"></a>
 
-### 📒 <a name="38"></a>
+`Composition` is what we just did with FP, creating small reusable functions to make code modular. Smaller pieces that are combined to create something bigger.
 
-### 📒 <a name="39"></a>
+`Inheritance` is what we did with OOP, creating a class and extending it to subclasses that inherit the properties. `Inheritance` is a superclass that is extended to smaller pieces that add or overwrite things. In OOP we create few operations on common data that is stateful with side effects.
 
-## 🚩 R <a name="5"></a>
+There is a big debate over which one is better and most people believe that composition is better.
+Composition is probably a better tool to use when creating programs because it creates a more stable environment that is easier to change in the future. The key is to decide which structure is better for your project. You can use ideas from both of these styles to write your code. React uses OOP in class components to extend inheritance and then uses FP in the pure components.
 
-```
+### 📒 OOP vs FP <a name="38"></a>
 
-```
+They are both a programming paradigm.
+
+Organizing the code into units would be called `object oriented programming`. An object is a box containing information and operations that are supposed to refer to the same concept. We're grouping it as an object. These pieces of information inside of the object are called attributes or state, and the operations that can happen on this state are known as methods.
+
+Avoiding side effects and writing pure functions would be called `functional programming`. In functional programming, the code is essentially a combination of functions, and data is immutable, which leads to writing programs with no side effects and pure functions. Because in a functional programming paradigm, that function cannot change the outside world.
+
+Key differences:
+
+- Functional programming is all about performing many different operations for which the data is fixed. So that's many operations. / Object oriented programming is about a few operations on common data.
+- In a functional program, we have the idea of stateless. We don't modify state. State is immutable. / Object oriented programming that is very state full we are modifying state.
+- In functional programming our functions are pure. There are no side effects. It means that the functions that we write don't make an impact on the code that is running outside of that function. / On object oriented programming. There are definitely side effects. Methods manipulate our internal state.
+- Functional programming is quite good at processing large data for applications. If you're analyzing data, user data, maybe using it for a machine learning model. Functional programming works really well for high performance and processors, for example, because you can run it on multiple processors. If you have a few things that require a lot of operations, a lot of little functions apply to it, well then functional programming is usually a good idea. / If, on the other hand, you have many things like characters in a game with not too many operations, with few operations, well then object oriented programming might be a better solution.
+-
+-
+
+## 🚩 Asynchronous JS <a name="39"></a>
+
+## 🚩 Modules <a name="40"></a>
+
+## 🚩 Error Handling <a name="41"></a>

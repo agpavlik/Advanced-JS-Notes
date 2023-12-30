@@ -1541,6 +1541,79 @@ Key differences:
 
 ### 📒 Promises <a name="40"></a>
 
+A `promise` is an object that may produce a single value sometime in the future, either a resolved value or a reason that it's not resolved or rejected.
+A promise may be in one of three possible states fulfilled, rejected or pending.
+
+Now, in order to fully grasp the concept, we must first talk about what we had before promises. And that is `callbacks`. Now promises serve the same purpose as callbacks.
+
+So at their most basic promises are a bit like event listeners, except a promise can only succeed or fail once it cannot succeed or fail twice. And this is extremely useful for things that are asynchronous success and failure, such as API calls, because we're less interested in the exact time something became available and more interested in reacting to the outcome.
+
+Promise examples
+
+```javascript
+const promise = new Promise((resolve, reject) => {
+  if (true) {
+    resolve("It works");
+  } else {
+    reject("Error, it broke");
+  }
+});
+
+// promise.then((result) => console.log(result));
+promise
+  .then((result) => result + "!")
+  .then((result2) => result2 + "?")
+  .catch(() => console.log("error")); // it catches any errors that may happen between the chains then. Catch statement is going to check and run, if anything before it fails.
+  .then((result3 => console.log(result3 + "!!")))
+```
+
+```javascript
+const promise = new Promise((resolve, reject) => {
+  if (true) {
+    resolve("It works");
+  } else {
+    reject("Error, it broke");
+  }
+});
+
+const promise2 = new Promise((resolve, reject) => {
+  setTimeout(resolve, 100, "Hiii");
+});
+
+const promise3 = new Promise((resolve, reject) => {
+  setTimeout(resolve, 1000, "Max");
+});
+
+const promise4 = new Promise((resolve, reject) => {
+  setTimeout(resolve, 2000, "Is it me you are looking for");
+});
+
+Promise.all([promise, promise2, promise3, promise4]).then((value) => {
+  console.log(value); // ['It works', 'Hiii', 'Max', 'Is it me you are looking for']
+});
+//These ones took a lot less well because we did promised that all it waited until all the promises were resolved and then logged out the values.
+```
+
+```javascript
+const urls = [
+  "https://jsonplaceholder.typicode.com/users",
+  "https://jsonplaceholder.typicode.com/posts",
+  "https://jsonplaceholder.typicode.com/albums",
+];
+
+Promise.all(
+  urls.map((url) => {
+    return fetch(url).then((resp) => resp.json());
+  })
+)
+  .then((results) => {
+    console.log(results[0]);
+    console.log(results[1]);
+    console.log(results[2]);
+  })
+  .catch(() => console.log("error"));
+```
+
 ### 📒 Async Await <a name="41"></a>
 
 ## 🚩 Modules <a name="42"></a>

@@ -1693,6 +1693,48 @@ const getData = async function () {
 };
 ```
 
+Example 4.
+
+There are a few ways that we can manage promises.
+
+- `parallel`. I want you to execute all three of these promises. I want you to run them in parallel all at the same time.
+- `sequential`. I want to run the first one, and if the first one succeeds, then the second one, then if the second one succeeds, then the third one. They're all dependent on each other.
+- `race`. I want you to call three things. But whichever one comes back first, just do that one and ignore the rest.
+
+```javascript
+const promisify = (item, delay) =>
+  new Promise((resolve) => setTimeout(() => resolve(item), delay));
+
+const a = () => promisify("a", 100);
+const b = () => promisify("b", 5000);
+const c = () => promisify("c", 3000);
+
+// parallel
+async function parallel() {
+  const promises = [a(), b(), c()];
+  const [output1, output2, output3] = await Promise.all(promises);
+  return `prallel is done: ${output1} ${output2} ${output3}`;
+}
+parallel().then(console.log);
+
+// race
+async function race() {
+  const promises = [a(), b(), c()];
+  const output1 = await Promise.race(promises);
+  return `race is done: ${output1}`;
+}
+race().then(console.log);
+
+// sequence
+async function sequence() {
+  const output1 = await a();
+  const output2 = await b();
+  const output3 = await c();
+  return `sequence is done ${output1} ${output2} ${output3}`;
+}
+sequence().then(console.log);
+```
+
 ## 🚩 Modules <a name="42"></a>
 
 ## 🚩 Error Handling <a name="43"></a>

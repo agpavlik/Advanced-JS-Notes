@@ -1693,8 +1693,6 @@ const getData = async function () {
 };
 ```
 
-Example 4.
-
 There are a few ways that we can manage promises.
 
 - `parallel`. I want you to execute all three of these promises. I want you to run them in parallel all at the same time.
@@ -1733,6 +1731,23 @@ async function sequence() {
   return `sequence is done ${output1} ${output2} ${output3}`;
 }
 sequence().then(console.log);
+```
+
+`allSettled` doesn't care about resolve and reject, unlike promised at `all`. The promise allSettled runs, all promises, regardless of whether they reject or not. So the promise only comes back when all promises that have been added to it are complete.
+
+```javascript
+const promiseOne = newPromise((resolve, reject) => setTimeout(resolve, 3000));
+const promiseTwo = newPromise((resolve, reject) => setTimeout(reject, 3000));
+
+Promise.all([promiseOne, promiseTwo])
+  .then((data) => console.log(data))
+  .catch((e) => console.log("error", e));
+
+// try with allSettled
+
+Promise.allSettled([promiseOne, promiseTwo])
+  .then((data) => console.log(data))
+  .catch((e) => console.log("error", e));
 ```
 
 ## 🚩 Modules <a name="42"></a>

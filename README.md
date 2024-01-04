@@ -1616,6 +1616,83 @@ Promise.all(
 
 ### 📒 Async Await <a name="41"></a>
 
+`Async function` is a function that returns a promise, but the benefit of async await is that it makes code easier to read.
+
+Example 1
+
+```javascript
+// this is asynchronous code
+movePlayer(100, "Left")
+  .then(() => movePlayer(400, "Left"))
+  .then(() => movePlayer(10, "Left"))
+  .then(() => movePlayer(330, "Left"));
+
+// with async await ot would look like this
+
+// declare a function as async
+// inside we have a keyword await, which says - pause this function until I have something for you.
+async function playerStart() {
+  const firstMove = await movePlayer(100, "Left");
+  await movePlayer(400, "Left");
+  await movePlayer(10, "Left");
+  await movePlayer(330, "Left");
+}
+```
+
+Example 2:
+
+```javascript
+fetch("https://jsonplaceholder.typicode.com/albums")
+  .then((resp) => resp.json())
+  .then(console.log);
+
+// with async await ot would look like this
+async function fetchUsers() {
+  const resp = await fetch("https://jsonplaceholder.typicode.com/albums");
+  const data = await resp.json();
+  console.log(data);
+}
+```
+
+Example 3
+
+```javascript
+const urls = [
+  "https://jsonplaceholder.typicode.com/users",
+  "https://jsonplaceholder.typicode.com/posts",
+  "https://jsonplaceholder.typicode.com/albums",
+];
+
+Promise.all(
+  urls.map((url) => {
+    return fetch(url).then((resp) => resp.json());
+  })
+)
+  .then((array) => {
+    console.log("users", array[0]);
+    console.log("posts", array[1]);
+    console.log("albums", array[2]);
+  })
+  .catch("error");
+
+// with async await ot would look like this
+
+const getData = async function () {
+  try {
+    const [users, posts, albums] = await Promise.all(
+      urls.map((url) => {
+        return fetch(url).then((resp) => resp.json());
+      })
+    );
+    console.log("users", users);
+    console.log("posts", posts);
+    console.log("albums", albums);
+  } catch (err) {
+    console.log("error", err);
+  }
+};
+```
+
 ## 🚩 Modules <a name="42"></a>
 
 ## 🚩 Error Handling <a name="43"></a>

@@ -53,6 +53,10 @@
 
 ---
 
+- [📎 Appendix: JS Basics & Intermediate ](#46)
+
+---
+
 ## 🚩 JS FOUNDATION <a name="1"></a>
 
 ### 📒 Javascript Engine <a name="2"></a>
@@ -1871,4 +1875,219 @@ Trying to run this in the browser there is still 2 more things that have to be d
 
 ---
 
-## 🚩 Error Handling <a name="43"></a>
+## 🚩 Error Handling <a name="45"></a>
+
+One of the most important things to learn in being a developer is how to solve errors. Learning to handle errors makes you a better programmer. Writing your programs you have the ability to use the `throw` keyword to stop the program and handle an error by using a `try/catch` block that has an optional `finally` block or the `.catch()` method for asynchronous code.
+
+Throwing a new error in asynchronous code gets what is called a silent fail if there is no catch block present.
+
+In synchronous code, if there is no catch statement placed in the code, the runtime will create catch: `onerror()` and we see the built in JavaScript error message in red.
+
+```javascript
+// throw statement is used to define our errors. So during runtime, when we run our JavaScript, when a throw statement is encountered by the program. The execution of the current function will stop and control will be passed to the next part of the call stack.
+throw new Error();
+
+// synchronous try/catch/finally block
+function fail() {
+  try {
+    console.log("this works");
+    throw new Error("oopsie!!!");
+  } catch (error) {
+    console.log("we have made an oopsie", error);
+  } finally {
+    console.log("still good");
+  }
+}
+
+fail();
+// this works // because it goes line by line
+// we have made an oopsie Error: oopsie at fail
+// still good
+
+// asynchronous .catch()
+Promise.resolve("asyncfail")
+  .then((response) => {
+    console.log(response);
+    return response;
+  })
+  .catch((error) => {
+    console.log(err);
+  });
+
+(async function () {
+  try {
+    await Promise.resolve("oopsie #1");
+    await Promise.reject("oopsie #2");
+  } catch (err) {
+    console.log(err);
+  }
+  console.log("is this still good?");
+})();
+
+// Promise {} // Promise resolved
+// ooopsie #2
+// is this still good?
+```
+
+Besides the generic Error constructor, there are seven other built in error constructors.
+
+- `EvalError` - an error with the global function eval().
+- `InternalError` - an error in the JavaScript engine is thrown. Usually when something is too large.
+- `RangeError` - an error when a numeric variable or parameter is outside of its valid range.
+- `ReferenceError` - an error that occurs when referencing something invalid. E.g. When a variable is used before it is declared.
+- `SyntaxError` - an error that occurs in parsing, the engine does not understand what is written.
+- `TypeError` - an error when a variable is not the correct type.
+- `URIError` - an error when encodeURI() or decodeURI() are passed invalid parameters.
+
+In JavaScript, we have a native error constructor function.
+Errors created using the `new` keyword come with 3 properties.
+
+- name - the name of the error.
+- message - the parameter given to the error.
+- stack - the stack trace or callback queue when the error occurred that also includes the line and character number where the error happened.
+
+```javascript
+const myError = new Error("oopsie");
+
+myError.name; // "Error"
+myError.message; // "oopsie"
+myError.stack; // "Error: oopsie at <anonymous>:1:17
+
+function a() {
+  const b = new Error("uh oh");
+  return b;
+}
+
+b(); // b().stack
+// Error: uh oh
+// at a (<anonymous>:2:12)
+// at <anonymous>:1:1
+```
+
+Because Error is a constructor function, we can use that to extend it and add to it. You don't want to reveal parts of your program by allowing an error to give the stack trace and other information to possible bad actors. So, you can customize what you want your errors to reveal.
+
+Extending Errors
+
+```javascript
+class AuthenticationError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "AuthenticationError";
+    this.message = "authentication problem";
+    this.fix = "please log in";
+  }
+}
+
+const err = new AuthenticationError("oopsie");
+err; // authenticationError: "authentication problem" stack trace
+err.fix; // please log in
+```
+
+---
+
+## 📎 Appendix: JS Basics & Intermediate<a name="46"></a>
+
+> Variables
+
+- `var`
+- `let`
+- `const`
+
+> Logical operators
+
+- `&&`
+- `||`
+- `!`
+
+> Conditionals
+
+- `if else`
+- `ternary operator`
+- `switch`
+
+```javascript
+
+```
+
+> Functions
+
+- function declaration
+
+```
+function name(){}
+```
+
+- `function expression`
+
+```
+var a = function(){}
+```
+
+- `arrow function`
+
+```
+() => {}
+```
+
+- `IIFE` immediately invoked function expression
+
+How do we make a function, perform an action? We call calling or invoking a function.
+
+```
+function()
+```
+
+> Data stuctures
+
+- `Array`
+- `Object`
+  function inside the object called `method`
+
+> Looping
+
+- `for`
+
+```javascript
+var a = [a, b, c];
+for (let i = 0; i < a.length; i++) {
+  console.log(i);
+}
+```
+
+- `forEach`
+
+```javascript
+var a = [a, b, c];
+a.forEach(function (i) {
+  console.log(i);
+});
+```
+
+- `while`
+
+```javascript
+var a = 10;
+while (a > 0) {
+  console.log(a);
+  a--;
+}
+```
+
+- `do`
+
+```javascript
+var a = 10;
+do {
+  console.log(a);
+  a--;
+} while (a > 0);
+```
+
+> Scope
+
+- `global scope`
+- `module scope`
+- `function scope`
+- `block scope`
+
+---

@@ -55,6 +55,8 @@
 
 - [📎 Appendix: JS Basics & Intermediate ](#46)
 
+- [📎 JS new features](#47)
+
 ---
 
 ## 🚩 JS FOUNDATION <a name="1"></a>
@@ -2122,6 +2124,10 @@ do {
 } while (a > 0);
 ```
 
+> `for of`
+
+> `for in`
+
 > Scope
 
 - `global scope`
@@ -2130,3 +2136,59 @@ do {
 - `block scope`
 
 ---
+
+## 📎 JS new features <a name="47"></a>
+
+- ES5 & ES6
+
+  - let
+  - const
+  - template strings ` `${}` `
+  - `for of` loop
+  - `for in` loop
+  - default arguments
+
+  ```javascript
+  function cat (name='Bob', age=4)
+  ```
+
+  - symbol
+
+  ```javascript
+  var sym = Symbol();
+  ```
+
+  Symbol value is used as an intensifier, mostly for object properties. It's pretty much the only purpose of that because sometimes you don't want object properties have thousands of them to collide and be the same ones because then you'll get bugs.
+
+  - arrow function
+
+- ES7
+
+  - .includes()
+  - exponential operator
+
+  ```javascript
+  const square = (x) => X ** 2;
+  ```
+
+- ES8
+
+  - .padStart()
+  - .padEnd()
+  - Object.values
+  - Object.entries
+
+- ES9
+
+  - Async Await
+
+- ES10 (2019)
+
+  - .flat()
+  - .flatMap()
+  - .trimEnd()
+  - .trimStart()
+  - Object.fromEntries()
+  - updated `try-catch block`
+
+- ES2020

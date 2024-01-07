@@ -1993,6 +1993,29 @@ err.fix; // please log in
 - `let`
 - `const`
 
+> Destructuring
+
+```javascript
+const obj = {
+  player: "a",
+  level: 100,
+  points: 200,
+};
+
+const player = obj.player;
+const level = obj.level;
+let points = obj.points;
+
+const { player, level } = obj;
+let { points } = obj;
+```
+
+> Template strings
+
+```
+`${name}`
+```
+
 > Logical operators
 
 - `&&`
@@ -2006,7 +2029,23 @@ err.fix; // please log in
 - `switch`
 
 ```javascript
-
+function moveCommand(direction) {
+  var a;
+  switch (direction) {
+    case "forward":
+      a = "move forward";
+      break;
+    case "back":
+      a = "move back";
+      break;
+    case "right":
+      a = "move right";
+      break;
+    default:
+      a = "please enter a valid direction";
+  }
+  return a;
+}
 ```
 
 > Functions

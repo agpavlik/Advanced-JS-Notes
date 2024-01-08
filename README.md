@@ -2124,9 +2124,9 @@ do {
 } while (a > 0);
 ```
 
-> `for of`
+- `for of` for iterating over array and string
 
-> `for in`
+- `for in` for enumerating over object properties
 
 > Scope
 
@@ -2192,3 +2192,27 @@ do {
   - updated `try-catch block`
 
 - ES2020
+
+  - bigint type
+  - nulish coalescing operator `??`
+  - optional chaining operator `?.`
+  - Promise.allSettled
+  - globalThis
+
+- ES2021
+
+  - str.replaceAll()
+
+- ES2022
+
+  - .at()
+
+- ES2023
+  - .findLast()
+  - .findLastIndex()
+  - .toReversed()
+  - .toSorted()
+  - .toSpliced()
+  - .with()
+
+---

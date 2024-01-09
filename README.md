@@ -2025,9 +2025,17 @@ Different languages have different names for a hash table, but in JavaScript a h
 - Key: unique integer that is used for indexing the values.
 - Value: data that are associated with keys.
 
-A `hash function` takes a group of characters (called a key) and maps it to a value of a certain length (called a hash value or hash). The hash value is representative of the original string of characters, but is normally smaller than the original.
+A `hash function` is a function that generates a value of fixed length for each input that it gets. The hash value is representative of the original string of characters, but is normally smaller than the original. Hashing is done for indexing and locating items in databases because it is easier to find the shorter hash value than the longer string. Hashing is also used in encryption. This term is also known as a hashing algorithm or message digest function.
 
-## Hashing is done for indexing and locating items in databases because it is easier to find the shorter hash value than the longer string. Hashing is also used in encryption. This term is also known as a hashing algorithm or message digest function.
+Every data structure is going to come with downsides. `Hash collisions` are what happens when a hash function maps a key to the same address as a previously added key. With enough data and limited memory, we will always run into this collision. This does not overwrite the previous information, but creates a linked list and slows down our ability to access the information.
+
+Some ways to handle collisions:
+
+- Linear probing. If a pair is hashed to a slot which is already occupied, it searches linearly for the next free slot in the table.
+- Chaining. The hash table will be an array of linked lists. All keys mapping to the same index will be stored as linked list nodes at that index.
+- Resizing the hash table. The size of the hash table can be increased in order to spread the hash entries further apart. A threshold value signifies the percentage of the hash-table that needs to be occupied before resizing. A hash table with a threshold of 0.6 would resize when 60% of the space is occupied. As a convention, the size of the hash-table is doubled. This can be memory intensive.
+
+---
 
 ## 📎 Appendix: JS Basics & Intermediate<a name="47"></a>
 

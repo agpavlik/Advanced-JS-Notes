@@ -50,12 +50,15 @@
   - [Module Patterns](#43)
   - [CommonJS and AMD and import/export](#44)
 - [Error Handling](#45)
+- [Data Structure in JS](#46)
+  - [What is Data Structure](#461)
+  - [Array](#462)
+  - [Hash Tables](#463)
 
 ---
 
-- [📎 Appendix: JS Basics & Intermediate ](#46)
-
-- [📎 JS new features](#47)
+- [📎 Appendix: JS Basics & Intermediate ](#47)
+- [📎 JS new features](#48)
 
 ---
 
@@ -1987,7 +1990,46 @@ err.fix; // please log in
 
 ---
 
-## 📎 Appendix: JS Basics & Intermediate<a name="46"></a>
+## 🚩 Data Structures in JS <a name="46"></a>
+
+### 📒 What is Data Structure?<a name="461"></a>
+
+A `data structure` is a collection of values. `Algorithms` are the steps or processes we put into place to manipulate these collection of values. It's what allows us to write programs. The values can have relationships among them, and they can have functions apply to them. A data structure is different types of containers that hold your data. Each container has its own type of data it holds and is specfic to that type. You want to be able to easily access your data and know where it is located. It is basically a way to organize your data. There are two parts to data structures: how to build one and how to use it.
+
+Operations On Data Structures:
+
+- Insertion: Add a new data item in a given collection of items such as us adding the apple item in memory.
+- Deletion: Delete data such as remove mango from our list.
+- Traversal: Traversal simply means accessing each data item exactly once so that it can be processed.
+- Searching: We want to find out the location of the data item if it exists in a given collection.
+- Sorting: Having data that is sorted.
+- Access: How do we access this data that we have on our computer?
+
+### 📒 Array <a name="462></a>
+
+Arrays order items sequentially with an index. Arrays are probably the simplest and the most widely used data structure because the are fast and take up the least amount of space.
+
+Types of Arrays:
+
+- `Static arrays`.
+  The size or number of elements in static arrays is fixed. (After an array is created and memory space allocated, the size of the array cannot be changed.) The array's content can be modified, but the memory space allocated to it remains constant.
+
+- `Dynamic arrays`.
+  The size or number of elements in a dynamic array can change. (After an array is created, the size of the array can be changed – the array size can grow or shrink.)
+  Dynamic arrays allow elements to be added and removed at the runtime. (The size of the dynamic array can be modified during the operations performed on it.)
+
+### 📒 Hash Tables <a name="463></a>
+
+Different languages have different names for a hash table, but in JavaScript a hash table is an `object`. A data structure that stores data in key/value pairs.
+
+- Key: unique integer that is used for indexing the values.
+- Value: data that are associated with keys.
+
+A `hash function` takes a group of characters (called a key) and maps it to a value of a certain length (called a hash value or hash). The hash value is representative of the original string of characters, but is normally smaller than the original.
+
+## Hashing is done for indexing and locating items in databases because it is easier to find the shorter hash value than the longer string. Hashing is also used in encryption. This term is also known as a hashing algorithm or message digest function.
+
+## 📎 Appendix: JS Basics & Intermediate<a name="47"></a>
 
 > Variables
 
@@ -2135,9 +2177,13 @@ do {
 - `function scope`
 - `block scope`
 
+> Debugging
+
+- debugger
+
 ---
 
-## 📎 JS new features <a name="47"></a>
+## 📎 JS new features <a name="48"></a>
 
 - ES5 & ES6
 
